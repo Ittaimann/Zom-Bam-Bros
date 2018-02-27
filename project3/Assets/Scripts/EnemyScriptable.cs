@@ -2,15 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Data", menuName = "Inventory/List", order = 1)]
+[CreateAssetMenu(fileName = "Enemy", menuName = "enemy")]
 public class EnemyScriptable : ScriptableObject {
 
 	public float health;
+
 	
 	// Use this for initialization
-	void Start () {
-		
-	}
-	
+
 
 }
