@@ -15,6 +15,10 @@ public class Enemy_Movement : MonoBehaviour {
     [Header("Variables")]
     public float speed;
     public float maxVelocity;
+    public float cutoffDistance;
+    public float hitStrength;
+
+    private bool can_hit = true;
 
 
 	// Use this for initialization
@@ -33,14 +37,20 @@ public class Enemy_Movement : MonoBehaviour {
         if (rb.velocity.magnitude < maxVelocity)
             rb.velocity += speed * Time.deltaTime * (Vector2) (to_target.position - transform.position).normalized;
 
-        //if (player.transform.position.x > transform.position.x && rb.velocity.magnitude < maxVelocity)
-        //    rb.velocity += speed * Time.deltaTime * Vector2.right;
-        //else if (player.transform.position.x < transform.position.x && rb.velocity.magnitude < maxVelocity)
-        //    rb.velocity -= speed * Time.deltaTime * Vector2.right;
+        if ((to_target.position - transform.position).magnitude < cutoffDistance)
+        {
+            rb.velocity = Vector2.zero;
+            //if (can_hit)
+            //    StartCoroutine(Hit_Player(to_target.gameObject));
+        }
+    }
 
-        //if (player.transform.position.y > transform.position.y && rb.velocity.magnitude < maxVelocity)
-        //    rb.velocity += speed * Time.deltaTime * Vector2.up;
-        //else if (player.transform.position.y < transform.position.y && rb.velocity.magnitude < maxVelocity)
-        //    rb.velocity -= speed * Time.deltaTime * Vector2.up;
-	}
+    IEnumerator Hit_Player(GameObject player)
+    {
+        print("Direction thing: " + (player.transform.position - transform.position).normalized * hitStrength);
+        can_hit = false;
+        player.GetComponent<Rigidbody2D>().AddForce((player.transform.position - transform.position).normalized * hitStrength);
+        yield return new WaitForSeconds(1f);
+        can_hit = true;
+    }
 }
