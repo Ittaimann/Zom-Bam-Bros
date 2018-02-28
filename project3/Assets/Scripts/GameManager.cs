@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour {
 		while(!fighting)
 		{
             yield return new WaitForSeconds(SpawnTime);
-			Debug.Log(transform.GetChild(Random.Range(0,4)).name);
+		//	Debug.Log(transform.GetChild(Random.Range(0,4)).name);
 
         }
 	}

@@ -6,6 +6,12 @@ public class Player : MonoBehaviour {
 	public int playerNum;
 	private Rigidbody2D rb2d;
 	
+
+
+	//TEMP
+	public GameObject bullet;
+
+
 	public PlayerScriptable playerInfo;
 
 
@@ -22,7 +28,8 @@ public class Player : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		PlayerMove();
-		aim();
+		aim(); // SHOOT IS CALLED HERE
+	
 	}
 
 
@@ -32,14 +39,24 @@ public class Player : MonoBehaviour {
 		Vector2 direction=new Vector2(Input.GetAxis("RstickVertical" + playerNum), Input.GetAxis("RstickHorizontal" + playerNum));
 		direction.Normalize();
 		if(direction != Vector2.zero)
-			child.eulerAngles = new Vector3(0, 0, Mathf.Atan2(direction.x,direction.y) * 180 / Mathf.PI); 
+			child.eulerAngles = new Vector3( 0, 0, Mathf.Atan2(direction.x,direction.y) * Mathf.Rad2Deg);
+        StartCoroutine(shoot(child.rotation));
 	}
 
 	void PlayerMove()
 	{
-		Debug.Log("Horizontal" + playerNum);
 		Vector2 movement = new Vector2(Input.GetAxisRaw("Horizontal"+playerNum), Input.GetAxisRaw("Vertical"+ playerNum));
         movement.Normalize();
         rb2d.MovePosition(movement * Time.deltaTime * speed + rb2d.position);
 	}
+
+	IEnumerator shoot(Quaternion angle)
+	{
+
+        if(Input.GetAxisRaw("shoot"+playerNum)!=-1)
+		{
+			Instantiate(bullet,transform.position,angle);
+		}
+	}
+
 }
