@@ -31,4 +31,10 @@ public class PoolApi : ScriptableObject {
 		return null;
 		
 	}
+	
+	public void returnBullet(GameObject ReturningBullet)
+	{
+		ReturningBullet.transform.parent=pool.transform;
+	}
+
 }
