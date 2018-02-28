@@ -26,7 +26,8 @@ public class Player : MonoBehaviour {
 
 	void PlayerMove()
 	{
-		Vector2 movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+		Debug.Log("Horizontal" + playerNum);
+		Vector2 movement = new Vector2(Input.GetAxisRaw("Horizontal"+playerNum), Input.GetAxisRaw("Vertical"+ playerNum));
         movement.Normalize();
         rb2d.MovePosition(movement * Time.deltaTime * speed + rb2d.position);
 	}
