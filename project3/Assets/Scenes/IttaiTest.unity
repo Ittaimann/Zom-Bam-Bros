@@ -228,6 +228,48 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5656e113999538743b35fb460bea7b86, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &540113341
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 540113343}
+  - component: {fileID: 540113342}
+  m_Layer: 0
+  m_Name: bulletPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &540113342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 540113341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db4a50c55edd98d409b8699ff123a523, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BulletCount: 50
+  bullet: {fileID: 1479101866551692, guid: df664b7dbc649ad4dbef3ba4e5fb8df9, type: 2}
+--- !u!4 &540113343
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 540113341}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6.075784, y: 0.1659469, z: -0.00846784}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &750416839
 Prefab:
   m_ObjectHideFlags: 0
@@ -266,6 +308,16 @@ Prefab:
     - target: {fileID: 4681516441463194, guid: 78db71620d4b5de4aa2b014e4614cff8, type: 2}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114209372565841524, guid: 78db71620d4b5de4aa2b014e4614cff8,
+        type: 2}
+      propertyPath: bullet
+      value: 
+      objectReference: {fileID: 1479101866551692, guid: df664b7dbc649ad4dbef3ba4e5fb8df9,
+        type: 2}
+    - target: {fileID: 1497373673499930, guid: 78db71620d4b5de4aa2b014e4614cff8, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 78db71620d4b5de4aa2b014e4614cff8, type: 2}
