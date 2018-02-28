@@ -8,8 +8,7 @@ public class Player : MonoBehaviour {
 	
 
 
-	//TEMP
-	public GameObject bullet;
+	public PoolApi pool;
 
 
 	public PlayerScriptable playerInfo;
@@ -19,6 +18,7 @@ public class Player : MonoBehaviour {
 	private float speed;
 
     private bool can_take_damage = true;
+	private bool shooting=false;
 
 	void Awake()
 	{
@@ -31,8 +31,8 @@ public class Player : MonoBehaviour {
 	void Update () {
 		PlayerMove();
 		aim(); // SHOOT IS CALLED HERE
-	
-	}
+
+    }
 
 
 	void aim()
@@ -42,7 +42,8 @@ public class Player : MonoBehaviour {
 		direction.Normalize();
 		if(direction != Vector2.zero)
 			child.eulerAngles = new Vector3( 0, 0, Mathf.Atan2(direction.x,direction.y) * Mathf.Rad2Deg);
-        StartCoroutine(shoot(child.rotation));
+        if(!shooting)
+	    	StartCoroutine(shoot(child.rotation));
 	}
 
 	void PlayerMove()
@@ -54,11 +55,22 @@ public class Player : MonoBehaviour {
 
 	IEnumerator shoot(Quaternion angle)
 	{
-        yield return new WaitForSeconds(0);
-        if(Input.GetAxisRaw("shoot"+playerNum)!=-1)
+
+        shooting=true;
+
+        if(Input.GetAxisRaw("shoot"+playerNum)>=0)
 		{
-			Instantiate(bullet,transform.position,angle);
-		}
+			
+            var bullet = pool.RequestBullet("PlayerBullet" + playerNum);
+            if(bullet!=null)
+            {
+		    	bullet.transform.position=transform.position;
+		    	bullet.transform.rotation=angle;
+            }
+        }
+        yield return new WaitForSeconds(0);
+
+        shooting = false;
 	}
 
     public void Take_Damage(float dam)

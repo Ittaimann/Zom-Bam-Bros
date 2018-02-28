@@ -11,3 +11,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7804e2d57d2c4f84b98f4fe391ea162b, type: 3}
   m_Name: BulletpoolAPI
   m_EditorClassIdentifier: 
+  pool: {fileID: 0}
