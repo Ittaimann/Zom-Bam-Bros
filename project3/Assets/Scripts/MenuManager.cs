@@ -14,7 +14,9 @@ public class MenuManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         isPaused = false;
-        UnloadAll();
+        // UnloadAll();
+        // Having this off should allow this to be use for all scenes
+        // Must ensure all menus active = false on load
 	}
 	
 	// Update is called once per frame
