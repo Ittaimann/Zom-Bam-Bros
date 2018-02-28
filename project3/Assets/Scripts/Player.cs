@@ -71,6 +71,9 @@ public class Player : MonoBehaviour {
 
         health -= dam;
 
+        if (health <= 0)
+            print(name + " died");
+
         //Play sounds for damage
     }
 
