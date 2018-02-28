@@ -52,7 +52,7 @@ public class Player : MonoBehaviour {
 
 	IEnumerator shoot(Quaternion angle)
 	{
-
+        yield return new WaitForSeconds(0);
         if(Input.GetAxisRaw("shoot"+playerNum)!=-1)
 		{
 			Instantiate(bullet,transform.position,angle);
