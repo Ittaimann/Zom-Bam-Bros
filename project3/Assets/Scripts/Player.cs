@@ -71,19 +71,22 @@ public class Player : MonoBehaviour {
 
         health -= dam;
 
+        if (health <= 0)
+            print(name + " died");
+
         //Play sounds for damage
     }
 
     IEnumerator Invulnerability_Frames()
     {
         can_take_damage = false;
-        SpriteRenderer sr = GetComponent<SpriteRenderer>();
-        for(int i = 0; i < 5; ++i)
+        SpriteRenderer sr = GetComponentInChildren<SpriteRenderer>();
+        for(int i = 0; i < 7; ++i)
         {
             sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 0.2f);
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.05f);
             sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 0.5f);
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.05f);
         }
         sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 1);
         can_take_damage = true;

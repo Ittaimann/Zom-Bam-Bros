@@ -41,8 +41,8 @@ public class Enemy_Movement : MonoBehaviour {
         if ((to_target.position - transform.position).magnitude < cutoffDistance)
         {
             rb.velocity = Vector2.zero;
-            //if (can_hit)
-            //    StartCoroutine(Hit_Player(to_target.gameObject));
+            if (can_hit)
+                StartCoroutine(Hit_Player(to_target.gameObject));
         }
     }
 
