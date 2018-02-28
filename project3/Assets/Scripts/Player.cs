@@ -18,6 +18,8 @@ public class Player : MonoBehaviour {
     private float health;
 	private float speed;
 
+    private bool can_take_damage = true;
+
 	void Awake()
 	{
 		rb2d = GetComponent<Rigidbody2D>();
@@ -59,4 +61,31 @@ public class Player : MonoBehaviour {
 		}
 	}
 
+    public void Take_Damage(float dam)
+    {
+        print("got hit");
+        if (!can_take_damage)
+            return;
+
+        StartCoroutine(Invulnerability_Frames());
+
+        health -= dam;
+
+        //Play sounds for damage
+    }
+
+    IEnumerator Invulnerability_Frames()
+    {
+        can_take_damage = false;
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        for(int i = 0; i < 5; ++i)
+        {
+            sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 0.2f);
+            yield return new WaitForSeconds(0.1f);
+            sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 0.5f);
+            yield return new WaitForSeconds(0.1f);
+        }
+        sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 1);
+        can_take_damage = true;
+    }
 }

@@ -17,6 +17,7 @@ public class Enemy_Movement : MonoBehaviour {
     public float maxVelocity;
     public float cutoffDistance;
     public float hitStrength;
+    public float damage;
 
     private bool can_hit = true;
 
@@ -47,10 +48,13 @@ public class Enemy_Movement : MonoBehaviour {
 
     IEnumerator Hit_Player(GameObject player)
     {
-        print("Direction thing: " + (player.transform.position - transform.position).normalized * hitStrength);
+        print("hit");
+        //print("Direction thing: " + (player.transform.position - transform.position).normalized * hitStrength);
         can_hit = false;
-        player.GetComponent<Rigidbody2D>().AddForce((player.transform.position - transform.position).normalized * hitStrength);
-        yield return new WaitForSeconds(1f);
+        //Hits the player back on contact (doesn't really work but seems like a cool idea)
+        //player.GetComponent<Rigidbody2D>().AddForce((player.transform.position - transform.position).normalized * hitStrength);
+        player.GetComponent<Player>().Take_Damage(damage);
+        yield return new WaitForSeconds(0.5f);
         can_hit = true;
     }
 }
