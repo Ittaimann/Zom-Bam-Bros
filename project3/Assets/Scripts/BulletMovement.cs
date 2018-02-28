@@ -5,6 +5,7 @@ using UnityEngine;
 public class BulletMovement : MonoBehaviour {
 
 	public float speed;
+    public float damage;
 
 	private Rigidbody2D rb2d;
 
@@ -38,5 +39,10 @@ public class BulletMovement : MonoBehaviour {
 		gameObject.SetActive(false);
 		pool.returnBullet(gameObject);
 	}
+
+    public float GetDamage()
+    {
+        return damage;
+    }
 
 }
