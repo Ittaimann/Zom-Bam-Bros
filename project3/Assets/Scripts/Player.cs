@@ -57,7 +57,7 @@ public class Player : MonoBehaviour {
 
         shooting=true;
 
-        if(Input.GetAxisRaw("shoot"+playerInfo.playerNum)>=0)
+        if(Input.GetAxisRaw("shoot"+playerInfo.playerNum)>=.5)
 		{
 			
             var bullet = pool.RequestBullet("PlayerBullet" + playerInfo.playerNum);
