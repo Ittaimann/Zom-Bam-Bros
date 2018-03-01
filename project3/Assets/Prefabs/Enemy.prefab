@@ -128,7 +128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   player2: {fileID: 0}
-  enemyinfo: {fileID: 0}
+  enemyinfo: {fileID: 11400000, guid: 652085d8df1e135499234e21e071f5cb, type: 2}
   target: {fileID: 0}
   speed: 50
   maxVelocity: 3.5

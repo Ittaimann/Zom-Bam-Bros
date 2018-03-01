@@ -16,6 +16,8 @@ public class Player : MonoBehaviour {
     private float health;
 	private float speed;
 
+    private GameObject following_camera;
+
     private bool can_take_damage = true;
 	private bool shooting=false;
 
@@ -33,6 +35,11 @@ public class Player : MonoBehaviour {
 		aim(); // SHOOT IS CALLED HERE
     }
 
+    public void Set_Camera(GameObject c)
+    {
+        following_camera = c;
+    }
+
 
 	void aim()
 	{
@@ -41,7 +48,7 @@ public class Player : MonoBehaviour {
 		direction.Normalize();
 		if(direction != Vector2.zero)
 			child.eulerAngles = new Vector3( 0, 0, Mathf.Atan2(direction.x,direction.y) * Mathf.Rad2Deg);
-        if(!shooting)
+        if(!shooting && Input.GetAxisRaw("shoot" + playerInfo.playerNum) >= .5)
 	    	StartCoroutine(shoot(child.rotation));
 	}
 
@@ -57,15 +64,14 @@ public class Player : MonoBehaviour {
 
         shooting=true;
 
-        if(Input.GetAxisRaw("shoot"+playerInfo.playerNum)>=.5)
-		{
-			
-            var bullet = pool.RequestBullet("PlayerBullet" + playerInfo.playerNum);
-            if(bullet!=null)
-            {
-		    	bullet.transform.position=transform.position;
-		    	bullet.transform.rotation=angle;
-            }
+
+        
+        StartCoroutine(ScreenShake(1));
+        var bullet = pool.RequestBullet("PlayerBullet" + playerInfo.playerNum);
+        if(bullet!=null)
+        {
+		    bullet.transform.position=transform.position;
+		    bullet.transform.rotation=angle;
         }
         yield return new WaitForSeconds(1);
 
@@ -74,7 +80,7 @@ public class Player : MonoBehaviour {
 
     public void Take_Damage(float dam)
     {
-        print("got hit");
+        StartCoroutine(ScreenShake(5));
         if (!can_take_damage)
             return;
 
@@ -101,5 +107,14 @@ public class Player : MonoBehaviour {
         }
         sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 1);
         can_take_damage = true;
+    }
+
+    IEnumerator ScreenShake(float mult)
+    {
+        for (int i = 0; i < 5; ++i)
+        {
+            following_camera.transform.position += new Vector3(Random.Range(-.1f * mult, 0.1f * mult), Random.Range(-.1f * mult, .1f * mult));
+            yield return new WaitForSeconds(0.05f);
+        }
     }
 }

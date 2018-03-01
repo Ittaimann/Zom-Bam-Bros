@@ -590,7 +590,7 @@ Prefab:
         type: 2}
       propertyPath: playerInfo
       value: 
-      objectReference: {fileID: 11400000, guid: 988eebf676ee07b4c8f6ab868f7ec979,
+      objectReference: {fileID: 11400000, guid: 4be11ae960b6f424f876c54b2c11b5a8,
         type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 78db71620d4b5de4aa2b014e4614cff8, type: 2}

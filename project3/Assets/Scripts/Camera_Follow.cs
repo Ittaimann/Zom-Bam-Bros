@@ -8,6 +8,12 @@ public class Camera_Follow : MonoBehaviour {
     public float approach_speed, cutoff;
     public float x_min, x_max, y_min, y_max;
 
+    void Start()
+    {
+        to_follow.GetComponent<Player>().Set_Camera(gameObject);
+    }
+
+
     // Update is called once per frame
     void Update()
     {
