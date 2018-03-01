@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 114010959268943522}
   - component: {fileID: 61656310290384654}
   - component: {fileID: 61621929908411550}
+  - component: {fileID: 114930668176259044}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -127,12 +128,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   player2: {fileID: 0}
+  enemyinfo: {fileID: 0}
   target: {fileID: 0}
   speed: 50
   maxVelocity: 3.5
   cutoffDistance: 2
   hitStrength: 50
   damage: 1
+--- !u!114 &114930668176259044
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1317098661352988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a38685ab5a236dd45a58e52f671d4af5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  es: {fileID: 11400000, guid: 652085d8df1e135499234e21e071f5cb, type: 2}
 --- !u!212 &212656746897938888
 SpriteRenderer:
   m_ObjectHideFlags: 1

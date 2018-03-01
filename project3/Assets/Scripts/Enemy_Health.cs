@@ -16,7 +16,10 @@ public class Enemy_Health : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D c)
     {
         if (c.tag == "PlayerBullet1" || c.tag == "PlayerBullet2")
+        {
             Take_Damage(c.GetComponent<BulletMovement>().GetDamage());
+            c.GetComponent<BulletMovement>().ReturnToPool();
+        }
     }
 
     public void Take_Damage(float dam)

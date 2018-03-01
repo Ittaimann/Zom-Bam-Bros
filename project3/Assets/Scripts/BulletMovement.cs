@@ -34,7 +34,7 @@ public class BulletMovement : MonoBehaviour {
         rb2d.MovePosition(new Vector2(transform.right.x, transform.right.y) * Time.deltaTime*speed + rb2d.position);
 	}
 	
-	void ReturnToPool()
+	public void ReturnToPool()
 	{
 		gameObject.SetActive(false);
 		pool.returnBullet(gameObject);
