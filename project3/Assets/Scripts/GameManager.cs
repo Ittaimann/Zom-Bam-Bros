@@ -16,14 +16,15 @@ public class GameManager : MonoBehaviour {
 
 	void Awake()
 	{
-		fighting = false;
-		enemies.player1= player1.loc;
-        enemies.player2 = player2.loc;
-        player1.isalive = true;
-        player2.isalive = true;
+		
 	}
 	// Use this for initialization
 	void Start () {
+        fighting = false;
+        enemies.player1 = player1.loc;
+        enemies.player2 = player2.loc;
+        player1.isalive = true;
+        player2.isalive = true;
 		StartCoroutine("enemySpawn");
 
 	}
