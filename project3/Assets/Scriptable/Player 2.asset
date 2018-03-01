@@ -9,7 +9,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 77b442119a2741440bf6adab25ccb93d, type: 3}
-  m_Name: Player
+  m_Name: Player 2
   m_EditorClassIdentifier: 
   StartHealth: 10
   StartSpeed: 10
+  playerNum: 2
+  loc: {fileID: 0}

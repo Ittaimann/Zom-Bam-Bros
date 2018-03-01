@@ -257,6 +257,12 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114209372565841524, guid: 78db71620d4b5de4aa2b014e4614cff8,
+        type: 2}
+      propertyPath: playerInfo
+      value: 
+      objectReference: {fileID: 11400000, guid: 988eebf676ee07b4c8f6ab868f7ec979,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 78db71620d4b5de4aa2b014e4614cff8, type: 2}
   m_IsPrefabParent: 0
@@ -387,6 +393,24 @@ Prefab:
       propertyPath: enemy
       value: 
       objectReference: {fileID: 1317098661352988, guid: 92dc6488beac93c47b1d052dcf5c2a56,
+        type: 2}
+    - target: {fileID: 114768142298072352, guid: 5656e113999538743b35fb460bea7b86,
+        type: 2}
+      propertyPath: enemies
+      value: 
+      objectReference: {fileID: 11400000, guid: 652085d8df1e135499234e21e071f5cb,
+        type: 2}
+    - target: {fileID: 114768142298072352, guid: 5656e113999538743b35fb460bea7b86,
+        type: 2}
+      propertyPath: player1
+      value: 
+      objectReference: {fileID: 11400000, guid: 988eebf676ee07b4c8f6ab868f7ec979,
+        type: 2}
+    - target: {fileID: 114768142298072352, guid: 5656e113999538743b35fb460bea7b86,
+        type: 2}
+      propertyPath: player2
+      value: 
+      objectReference: {fileID: 11400000, guid: 4be11ae960b6f424f876c54b2c11b5a8,
         type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5656e113999538743b35fb460bea7b86, type: 2}

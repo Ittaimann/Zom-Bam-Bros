@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour {
-	public int playerNum;
 	private Rigidbody2D rb2d;
 	
 
@@ -22,6 +21,7 @@ public class Player : MonoBehaviour {
 
 	void Awake()
 	{
+        playerInfo.loc=transform;
 		rb2d = GetComponent<Rigidbody2D>();
 		health=playerInfo.StartHealth;
 		speed=playerInfo.StartSpeed;
@@ -31,14 +31,13 @@ public class Player : MonoBehaviour {
 	void Update () {
 		PlayerMove();
 		aim(); // SHOOT IS CALLED HERE
-        Debug.Log(Input.GetAxisRaw("Horizontal" + playerNum));
     }
 
 
 	void aim()
 	{
 		var child = transform.GetChild(1);
-		Vector2 direction=new Vector2(Input.GetAxis("RstickVertical" + playerNum), Input.GetAxis("RstickHorizontal" + playerNum));
+		Vector2 direction=new Vector2(Input.GetAxis("RstickVertical" + playerInfo.playerNum), Input.GetAxis("RstickHorizontal" + playerInfo.playerNum));
 		direction.Normalize();
 		if(direction != Vector2.zero)
 			child.eulerAngles = new Vector3( 0, 0, Mathf.Atan2(direction.x,direction.y) * Mathf.Rad2Deg);
@@ -48,7 +47,7 @@ public class Player : MonoBehaviour {
 
 	void PlayerMove()
 	{
-		Vector2 movement = new Vector2(Input.GetAxisRaw("Horizontal"+playerNum), Input.GetAxisRaw("Vertical"+ playerNum));
+		Vector2 movement = new Vector2(Input.GetAxisRaw("Horizontal"+playerInfo.playerNum), Input.GetAxisRaw("Vertical"+ playerInfo.playerNum));
         movement.Normalize();
         rb2d.MovePosition(movement * Time.deltaTime * speed + rb2d.position);
 	}
@@ -58,10 +57,10 @@ public class Player : MonoBehaviour {
 
         shooting=true;
 
-        if(Input.GetAxisRaw("shoot"+playerNum)>=0)
+        if(Input.GetAxisRaw("shoot"+playerInfo.playerNum)>=0)
 		{
 			
-            var bullet = pool.RequestBullet("PlayerBullet" + playerNum);
+            var bullet = pool.RequestBullet("PlayerBullet" + playerInfo.playerNum);
             if(bullet!=null)
             {
 		    	bullet.transform.position=transform.position;

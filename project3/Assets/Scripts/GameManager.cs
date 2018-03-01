@@ -7,9 +7,15 @@ public class GameManager : MonoBehaviour {
 	public float SpawnTime;
 	public GameObject enemy;
 
+	public EnemyScriptable enemies;
+	public PlayerScriptable player1;
+	public PlayerScriptable player2;
+
 	void Awake()
 	{
 		fighting = false;
+		enemies.player1= player1.loc;
+        enemies.player2 = player2.loc;
 	}
 	// Use this for initialization
 	void Start () {

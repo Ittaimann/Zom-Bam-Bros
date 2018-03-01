@@ -9,6 +9,8 @@ public class Enemy_Movement : MonoBehaviour {
     public Transform player, player2;
     private Rigidbody2D rb;
 
+    public EnemyScriptable enemyinfo;
+
     [HideInInspector]
     public Transform target;
 
@@ -24,6 +26,8 @@ public class Enemy_Movement : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        player = enemyinfo.player1;
+        player2 = enemyinfo.player2;
         rb = GetComponent<Rigidbody2D>();
 	}
 	
