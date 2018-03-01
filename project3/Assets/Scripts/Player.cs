@@ -67,6 +67,8 @@ public class Player : MonoBehaviour {
 
         
         StartCoroutine(ScreenShake(1));
+        transform.GetChild(2).rotation = angle;
+        transform.GetChild(2).GetComponent<ParticleSystem>().Emit(40);
         var bullet = pool.RequestBullet("PlayerBullet" + playerInfo.playerNum);
         if(bullet!=null)
         {
