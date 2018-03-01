@@ -5,7 +5,8 @@ using UnityEngine;
 public class GameManager : MonoBehaviour {
 	private bool fighting;
 	public float SpawnTime;
-	
+	public GameObject enemy;
+
 	void Awake()
 	{
 		fighting = false;
@@ -25,7 +26,10 @@ public class GameManager : MonoBehaviour {
 		while(!fighting)
 		{
             yield return new WaitForSeconds(SpawnTime);
-		//	Debug.Log(transform.GetChild(Random.Range(0,4)).name);
+			Transform spawn=(transform.GetChild(Random.Range(0,4)));
+
+			Instantiate(enemy,spawn);
+
 
         }
 	}

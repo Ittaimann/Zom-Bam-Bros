@@ -8,6 +8,7 @@ using UnityEngine;
 public class PlayerScriptable : ScriptableObject{
 	public float StartHealth;
 	public float StartSpeed;
+	
 
 
 

@@ -26,7 +26,6 @@ public class PoolApi : ScriptableObject {
             bullet.parent = null;
             bullet.gameObject.SetActive(true);
 			bullet.tag=tag;
-			Debug.Log(bullet.tag);
             return bullet.gameObject;
 		}
 		return null;

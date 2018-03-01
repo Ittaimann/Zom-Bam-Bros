@@ -31,7 +31,7 @@ public class Player : MonoBehaviour {
 	void Update () {
 		PlayerMove();
 		aim(); // SHOOT IS CALLED HERE
-
+        Debug.Log(Input.GetAxisRaw("Horizontal" + playerNum));
     }
 
 
@@ -68,7 +68,7 @@ public class Player : MonoBehaviour {
 		    	bullet.transform.rotation=angle;
             }
         }
-        yield return new WaitForSeconds(0);
+        yield return new WaitForSeconds(1);
 
         shooting = false;
 	}
