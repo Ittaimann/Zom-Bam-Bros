@@ -31,8 +31,11 @@ public class Player : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		PlayerMove();
-		aim(); // SHOOT IS CALLED HERE
+        if(playerInfo.isalive)
+        {
+            PlayerMove();
+            aim(); // SHOOT IS CALLED HERE
+        }
     }
 
     public void Set_Camera(GameObject c)
@@ -91,7 +94,10 @@ public class Player : MonoBehaviour {
         health -= dam;
 
         if (health <= 0)
-            print(name + " died");
+        {
+            playerInfo.isalive = false;
+            gameObject.SetActive(false);
+        }
 
         //Play sounds for damage
     }

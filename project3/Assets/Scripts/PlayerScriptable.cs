@@ -9,7 +9,8 @@ public class PlayerScriptable : ScriptableObject{
 	public float StartHealth;
 	public float StartSpeed;
     public int playerNum;
-	public Transform loc; 
+	public Transform loc;
+    public bool isalive;
 
 
 
