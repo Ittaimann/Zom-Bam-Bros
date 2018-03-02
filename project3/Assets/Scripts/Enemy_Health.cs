@@ -31,7 +31,7 @@ public class Enemy_Health : MonoBehaviour {
         if (health <= 0)
         {
             print("dead");
-            
+            es.DecEnemyNumber();
             if(drop!= null)
                 Instantiate( drop, transform.position, transform.rotation );
             

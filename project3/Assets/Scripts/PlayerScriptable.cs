@@ -11,8 +11,9 @@ public class PlayerScriptable : ScriptableObject{
     public int playerNum;
 	public Transform loc;
     public bool isalive;
+	public bool fighting;
 
-
+	
 
 
 }

@@ -7,7 +7,16 @@ public class EnemyScriptable : ScriptableObject {
 	public int health;
 	public Transform player1;
 	public Transform player2;
- 	
+	public int enemyNumber;
+
+	public void DecEnemyNumber()
+	{
+		if(enemyNumber!=0)
+		{
+			enemyNumber-=1;
+		}
+
+	}
 	
 	// Use this for initialization
 

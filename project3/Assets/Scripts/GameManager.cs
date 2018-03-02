@@ -14,10 +14,7 @@ public class GameManager : MonoBehaviour {
     public GameObject player1_death_panel;
     public GameObject player2_death_panel;
 
-	void Awake()
-	{
-		
-	}
+
 	// Use this for initialization
 	void Start () {
         fighting = false;
@@ -35,18 +32,22 @@ public class GameManager : MonoBehaviour {
             player1_death_panel.SetActive(true);
         if (!player2.isalive && !player2_death_panel.activeSelf)
             player2_death_panel.SetActive(true);
+		
+		// Might want to break this into a seperate function
+	
 	}
 
 	IEnumerator enemySpawn()
 	{
-		while(!fighting)
+		while(enemies.enemyNumber <= 0)
 		{
             yield return new WaitForSeconds(SpawnTime);
 			Transform spawn=(transform.GetChild(Random.Range(0,4)));
 
 			Instantiate(enemy,spawn);
 
-
         }
+        player1.fighting = true;
+        player2.fighting = true;
 	}
 }

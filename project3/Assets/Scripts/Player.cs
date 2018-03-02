@@ -112,6 +112,18 @@ public class Player : MonoBehaviour {
         //Play sounds for damage
     }
 
+
+  
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if(playerInfo.fighting && other.tag[-1]!=playerInfo.playerNum){
+            float damage=other.GetComponent<BulletMovement>().damage;
+            Take_Damage(damage);
+        }
+
+
+    }
+
     IEnumerator Invulnerability_Frames()
     {
         can_take_damage = false;
