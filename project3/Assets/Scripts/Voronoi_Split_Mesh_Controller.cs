@@ -33,8 +33,11 @@ public class Voronoi_Split_Mesh_Controller : MonoBehaviour {
 
         if ((player2.transform.position - player1.transform.position).magnitude < 35)
         {
+            //Set split screen off
             if (RightPivot.activeSelf)
             {
+                player1.GetComponent<Player>().Set_Camera(gameObject);
+                player2.GetComponent<Player>().Set_Camera(gameObject);
                 RightPivot.SetActive(false);
                 LeftPivot.SetActive(false);
                 MiddleBar.SetActive(false);
@@ -42,8 +45,11 @@ public class Voronoi_Split_Mesh_Controller : MonoBehaviour {
         }
         else
         {
+            //Set split screen on
             if (!RightPivot.activeSelf)
             {
+                player1.GetComponent<Player>().Set_Camera(LeftCam.gameObject);
+                player2.GetComponent<Player>().Set_Camera(RightCam.gameObject);
                 RightPivot.SetActive(true);
                 LeftPivot.SetActive(true);
                 MiddleBar.SetActive(true);
@@ -75,6 +81,7 @@ public class Voronoi_Split_Mesh_Controller : MonoBehaviour {
 
         if (rot.eulerAngles.z != angle)
         {
+            //Rotates everything
             rot.eulerAngles = new Vector3(0, 0, angle);
             LeftPivot.transform.rotation = rot;
             RightPivot.transform.rotation = rot;
@@ -82,6 +89,7 @@ public class Voronoi_Split_Mesh_Controller : MonoBehaviour {
             LeftCam.transform.rotation = rot;
             RightCam.transform.rotation = rot;
 
+            //Shifts the focus so the player is centered more in each side camera
             if ((rot.eulerAngles.z > 0 && rot.eulerAngles.z < 90))
             {
                 Focus_Left.transform.localPosition = new Vector2(Mathf.Lerp(-125, -200, (90 - rot.eulerAngles.z) / 90f), 0);
@@ -102,6 +110,8 @@ public class Voronoi_Split_Mesh_Controller : MonoBehaviour {
                 Focus_Left.transform.localPosition = new Vector2(Mathf.Lerp(-200, -125, (90 - (rot.eulerAngles.z - 270)) / 90f), 0);
                 Focus_Right.transform.localPosition = new Vector2(Mathf.Lerp(200, 125, (90 - (rot.eulerAngles.z - 270)) / 90f), 0);
             }
+
+            //Sets that focus offset to both cameras
             LeftCam.offset_percent = 1 - (462.5f + Focus_Left.transform.localPosition.x) / 462.5f;
             RightCam.offset_percent = 1 - (462.5f - Focus_Right.transform.localPosition.x) / 462.5f;
         }
