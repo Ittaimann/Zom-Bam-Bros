@@ -9,6 +9,7 @@ public class Voronoi_Split_Mesh_Controller : MonoBehaviour {
     public GameObject LeftPivot, RightPivot, MiddleBar;
     public Camera_Follow LeftCam, RightCam;
     public GameObject Focus_Left, Focus_Right;
+    private RectTransform middleBar_rt;
 
     public GameObject player1, player2;
 
@@ -25,13 +26,14 @@ public class Voronoi_Split_Mesh_Controller : MonoBehaviour {
         rot = Quaternion.identity;
         LeftCam.offset_percent = 1 - (462.5f + Focus_Left.transform.localPosition.x) / 462.5f;
         RightCam.offset_percent = 1 - (462.5f - Focus_Right.transform.localPosition.x) / 462.5f;
+        middleBar_rt = MiddleBar.GetComponent<RectTransform>();
         //rm.rectTransform.
     }
 
     // Update is called once per frame
     void Update () {
 
-        if ((player2.transform.position - player1.transform.position).magnitude < 35)
+        if ((player2.transform.position - player1.transform.position).magnitude < 33.7f)
         {
             //Set split screen off
             if (RightPivot.activeSelf)
@@ -77,6 +79,8 @@ public class Voronoi_Split_Mesh_Controller : MonoBehaviour {
 
 
         float angle = Vector2.Angle(line_between, Vector2.down) * (player2.transform.position.y > player1.transform.position.y ? 1 : -1);
+
+        MiddleBar.transform.localScale = new Vector3(Mathf.Lerp(0, 1, (player2.transform.position - player1.transform.position).magnitude / 200f), 1, 1);
 
 
         if (rot.eulerAngles.z != angle)

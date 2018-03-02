@@ -283,6 +283,21 @@ Prefab:
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 224194319853225606, guid: e2507ddfa4a2b0441afcbaf6e5017dc4,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 224194319853225606, guid: e2507ddfa4a2b0441afcbaf6e5017dc4,
+        type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224194319853225606, guid: e2507ddfa4a2b0441afcbaf6e5017dc4,
+        type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e2507ddfa4a2b0441afcbaf6e5017dc4, type: 2}
   m_IsPrefabParent: 0
@@ -953,6 +968,10 @@ Prefab:
       propertyPath: player2_death_panel
       value: 
       objectReference: {fileID: 106797539}
+    - target: {fileID: 1806753843109638, guid: 5656e113999538743b35fb460bea7b86, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5656e113999538743b35fb460bea7b86, type: 2}
   m_IsPrefabParent: 0
