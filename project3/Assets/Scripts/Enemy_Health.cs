@@ -5,6 +5,9 @@ using UnityEngine;
 public class Enemy_Health : MonoBehaviour {
 
     public EnemyScriptable es;
+    public GameObject drop; // on spawn we'll need to set this to some random
+                            // prefabof pick up objects
+
 
     private float health;
 
@@ -28,6 +31,10 @@ public class Enemy_Health : MonoBehaviour {
         if (health <= 0)
         {
             print("dead");
+            
+            if(drop!= null)
+                Instantiate( drop, transform.position, transform.rotation );
+            
             Destroy(gameObject);
         }
     }

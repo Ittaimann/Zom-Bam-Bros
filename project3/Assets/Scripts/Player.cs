@@ -3,42 +3,46 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour {
+
+    // private variables 
 	private Rigidbody2D rb2d;
-	
+    private float health;
+    private float speed;
+    private bool can_take_damage = true;
+    private bool shooting = false;
 
-
+    // public scriptables
 	public PoolApi pool;
-
-
 	public PlayerScriptable playerInfo;
 
 
-    private float health;
-	private float speed;
-
+    //follow cam
     private GameObject following_camera;
 
-    private bool can_take_damage = true;
-	private bool shooting=false;
+  
 
 	void Awake()
 	{
         playerInfo.loc=transform;
-		rb2d = GetComponent<Rigidbody2D>();
 		health=playerInfo.StartHealth;
 		speed=playerInfo.StartSpeed;
-	}
+
+        rb2d = GetComponent<Rigidbody2D>();
+
+    }
 	
-	// Update is called once per frame
-	void Update () {
-        if(playerInfo.isalive)
+
+	void Update () 
+    {
+        if( playerInfo.isalive )
         {
             PlayerMove();
             aim(); // SHOOT IS CALLED HERE
         }
     }
 
-    public void Set_Camera(GameObject c)
+
+    public void Set_Camera( GameObject c )
     {
         following_camera = c;
     }
@@ -47,18 +51,24 @@ public class Player : MonoBehaviour {
 	void aim()
 	{
 		var child = transform.GetChild(1);
-		Vector2 direction=new Vector2(Input.GetAxis("RstickVertical" + playerInfo.playerNum), Input.GetAxis("RstickHorizontal" + playerInfo.playerNum));
+
+		Vector2 direction=new Vector2( Input.GetAxis( "RstickVertical" + playerInfo.playerNum ),
+                                     Input.GetAxis( "RstickHorizontal" + playerInfo.playerNum ) );
 		direction.Normalize();
-		if(direction != Vector2.zero)
+		
+        if(direction != Vector2.zero)
 			child.eulerAngles = new Vector3( 0, 0, Mathf.Atan2(direction.x,direction.y) * Mathf.Rad2Deg);
+        
         if(!shooting && Input.GetAxisRaw("shoot" + playerInfo.playerNum) >= .5)
 	    	StartCoroutine(shoot(child.rotation));
 	}
 
 	void PlayerMove()
 	{
-		Vector2 movement = new Vector2(Input.GetAxisRaw("Horizontal"+playerInfo.playerNum), Input.GetAxisRaw("Vertical"+ playerInfo.playerNum));
+		Vector2 movement = new Vector2(Input.GetAxisRaw("Horizontal"+playerInfo.playerNum), 
+                                        Input.GetAxisRaw("Vertical"+ playerInfo.playerNum));
         movement.Normalize();
+        
         rb2d.MovePosition(movement * Time.deltaTime * speed + rb2d.position);
 	}
 
@@ -66,18 +76,18 @@ public class Player : MonoBehaviour {
 	{
 
         shooting=true;
-
-
         
         StartCoroutine(ScreenShake(1));
         transform.GetChild(2).rotation = angle;
         transform.GetChild(2).GetComponent<ParticleSystem>().Emit(40);
         var bullet = pool.RequestBullet("PlayerBullet" + playerInfo.playerNum);
+     
         if(bullet!=null)
         {
 		    bullet.transform.position=transform.position;
 		    bullet.transform.rotation=angle;
         }
+
         yield return new WaitForSeconds(1);
 
         shooting = false;
