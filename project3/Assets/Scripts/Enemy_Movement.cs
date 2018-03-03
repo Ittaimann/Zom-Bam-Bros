@@ -28,6 +28,7 @@ public class Enemy_Movement : MonoBehaviour {
 	void Start () {
         player = enemyinfo.player1;
         player2 = enemyinfo.player2;
+        Debug.LogWarning(player+ " "+ player2);
         rb = GetComponent<Rigidbody2D>();
 	}
 	

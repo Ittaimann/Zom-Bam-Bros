@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour {
-
     // private variables 
+        
 	private Rigidbody2D rb2d;
     private float health;
     private float speed;
     private bool can_take_damage = true;
     private bool shooting = false;
-
+    
+ 
     // public scriptables
-	public PoolApi pool;
+    public PoolApi pool;
 	public PlayerScriptable playerInfo;
 
 
@@ -116,8 +117,7 @@ public class Player : MonoBehaviour {
   
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(playerInfo.fighting && other.tag!= "PlayerBullet" + playerInfo.playerNum)
-        {
+        if(playerInfo.fighting && other.tag[-1]!=playerInfo.playerNum){
             float damage=other.GetComponent<BulletMovement>().damage;
             Take_Damage(damage);
         }
