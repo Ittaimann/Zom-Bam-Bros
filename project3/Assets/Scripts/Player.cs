@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour {
-
     // private variables 
+        
 	private Rigidbody2D rb2d;
     private float health;
     private float speed;
     private bool can_take_damage = true;
     private bool shooting = false;
+
     //should get this from the gun
     private float shoot_wait = 1;
-
     // public scriptables
-	public PoolApi pool;
+    public PoolApi pool;
 	public PlayerScriptable playerInfo;
 
     //Max variables
@@ -122,6 +122,7 @@ public class Player : MonoBehaviour {
   
     void OnTriggerEnter2D(Collider2D other)
     {
+
         print(other.name);
 
         if(other.tag == "SpeedUp")
@@ -149,6 +150,7 @@ public class Player : MonoBehaviour {
         else if (playerInfo.fighting && other.tag != "PlayerBullet" + playerInfo.playerNum)
         {
             float damage = other.GetComponent<BulletMovement>().damage;
+
             Take_Damage(damage);
         }
 
