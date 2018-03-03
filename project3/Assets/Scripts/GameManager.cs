@@ -5,15 +5,24 @@ using UnityEngine;
 public class GameManager : MonoBehaviour {
 	private bool fighting;
 	public float SpawnTime;
+
+    [Header("Enemies")]
 	public GameObject enemy;
     public int num_enemies;
 
 	public EnemyScriptable enemies;
+
+    [Header("Player")]
 	public PlayerScriptable player1;
 	public PlayerScriptable player2;
 
     public GameObject player1_death_panel;
     public GameObject player2_death_panel;
+
+    [Header("Drops")]
+    public GameObject healthDrop;
+    public GameObject speedDrop;
+    public GameObject shootspeedDrop;
 
 
 	// Use this for initialization
@@ -46,13 +55,22 @@ public class GameManager : MonoBehaviour {
         int count = 0;
 		while(enemies.enemyNumber > 0)
 		{
-            yield return new WaitForSeconds(SpawnTime);
+            yield return new WaitForSeconds(Random.Range(SpawnTime - 0.5f, SpawnTime + 0.5f));
 			Transform spawn=(transform.GetChild(Random.Range(0,4)));
 
             if(count != num_enemies)
             {
                 count++;
-                Instantiate(enemy, spawn);
+                GameObject e = Instantiate(enemy, spawn);
+                e.GetComponent<Enemy_Movement>().speed += Random.Range(-10f, 30f);
+                int rand = Random.Range(0, 100);
+
+                if(rand > 40 && rand < 60)
+                    e.GetComponent<Enemy_Health>().drop = healthDrop;
+                else if(rand <= 60 && rand < 75)
+                    e.GetComponent<Enemy_Health>().drop = speedDrop;
+                else if(rand <= 75 && rand < 85)
+                    e.GetComponent<Enemy_Health>().drop = shootspeedDrop;
             }
 
         }

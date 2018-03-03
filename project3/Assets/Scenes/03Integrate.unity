@@ -805,6 +805,21 @@ Prefab:
       value: 
       objectReference: {fileID: 21300000, guid: 667f7b474f8a7d147962d8f49b4f0072,
         type: 3}
+    - target: {fileID: 114209372565841524, guid: 78db71620d4b5de4aa2b014e4614cff8,
+        type: 2}
+      propertyPath: speed_max
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 114209372565841524, guid: 78db71620d4b5de4aa2b014e4614cff8,
+        type: 2}
+      propertyPath: health_max
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 114209372565841524, guid: 78db71620d4b5de4aa2b014e4614cff8,
+        type: 2}
+      propertyPath: shoot_speed_max
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 78db71620d4b5de4aa2b014e4614cff8, type: 2}
   m_IsPrefabParent: 0
@@ -1038,8 +1053,26 @@ Prefab:
     - target: {fileID: 114768142298072352, guid: 5656e113999538743b35fb460bea7b86,
         type: 2}
       propertyPath: num_enemies
-      value: 20
+      value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 114768142298072352, guid: 5656e113999538743b35fb460bea7b86,
+        type: 2}
+      propertyPath: healthDrop
+      value: 
+      objectReference: {fileID: 1433036453961516, guid: 372b6c630f12dc54b854c624a511f276,
+        type: 2}
+    - target: {fileID: 114768142298072352, guid: 5656e113999538743b35fb460bea7b86,
+        type: 2}
+      propertyPath: speedDrop
+      value: 
+      objectReference: {fileID: 1927248436434964, guid: eb290ed2e39af854ab201c361465a10e,
+        type: 2}
+    - target: {fileID: 114768142298072352, guid: 5656e113999538743b35fb460bea7b86,
+        type: 2}
+      propertyPath: shootspeedDrop
+      value: 
+      objectReference: {fileID: 1788588027219984, guid: 2b1f237c79f321e479a58424e2082590,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5656e113999538743b35fb460bea7b86, type: 2}
   m_IsPrefabParent: 0
@@ -2856,6 +2889,21 @@ Prefab:
         type: 2}
       propertyPath: m_Constraints
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114209372565841524, guid: 78db71620d4b5de4aa2b014e4614cff8,
+        type: 2}
+      propertyPath: speed_max
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 114209372565841524, guid: 78db71620d4b5de4aa2b014e4614cff8,
+        type: 2}
+      propertyPath: health_max
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 114209372565841524, guid: 78db71620d4b5de4aa2b014e4614cff8,
+        type: 2}
+      propertyPath: shoot_speed_max
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 78db71620d4b5de4aa2b014e4614cff8, type: 2}

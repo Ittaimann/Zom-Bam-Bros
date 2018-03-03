@@ -10,10 +10,16 @@ public class Player : MonoBehaviour {
     private float speed;
     private bool can_take_damage = true;
     private bool shooting = false;
+    //should get this from the gun
+    private float shoot_wait = 1;
 
     // public scriptables
 	public PoolApi pool;
 	public PlayerScriptable playerInfo;
+
+    //Max variables
+    [SerializeField]
+    private float speed_max, health_max, shoot_speed_max;
 
 
     //follow cam
@@ -88,7 +94,7 @@ public class Player : MonoBehaviour {
 		    bullet.transform.rotation=angle;
         }
 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(shoot_wait);
 
         shooting = false;
 	}
@@ -116,9 +122,33 @@ public class Player : MonoBehaviour {
   
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(playerInfo.fighting && other.tag!= "PlayerBullet" + playerInfo.playerNum)
+        print(other.name);
+
+        if(other.tag == "SpeedUp")
         {
-            float damage=other.GetComponent<BulletMovement>().damage;
+            Destroy(other.gameObject);
+            if(speed < speed_max)
+                speed += 5;
+        }
+        else if(other.tag == "HealthUp")
+        {
+            Destroy(other.gameObject);
+            if (health < health_max)
+                health += 1;
+        }
+        else if(other.tag == "ShootSpeedUp")
+        {
+            Destroy(other.gameObject);
+            if (shoot_wait > shoot_speed_max)
+                shoot_wait -= 0.1f;
+        }
+        else if(other.tag == "Pistol")
+        {
+            //Press button to pick up 
+        }
+        else if (playerInfo.fighting && other.tag != "PlayerBullet" + playerInfo.playerNum)
+        {
+            float damage = other.GetComponent<BulletMovement>().damage;
             Take_Damage(damage);
         }
 

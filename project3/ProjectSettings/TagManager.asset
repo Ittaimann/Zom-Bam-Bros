@@ -7,6 +7,9 @@ TagManager:
   - Enemy
   - PlayerBullet1
   - PlayerBullet2
+  - SpeedUp
+  - HealthUp
+  - ShootSpeedUp
   layers:
   - Default
   - TransparentFX
