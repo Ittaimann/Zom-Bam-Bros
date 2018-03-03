@@ -9,7 +9,6 @@ public class Voronoi_Split_Mesh_Controller : MonoBehaviour {
     public GameObject LeftPivot, RightPivot, MiddleBar;
     public Camera_Follow LeftCam, RightCam;
     public GameObject Focus_Left, Focus_Right;
-    private RectTransform middleBar_rt;
 
     public GameObject player1, player2;
 
@@ -26,7 +25,6 @@ public class Voronoi_Split_Mesh_Controller : MonoBehaviour {
         rot = Quaternion.identity;
         LeftCam.offset_percent = 1 - (462.5f + Focus_Left.transform.localPosition.x) / 462.5f;
         RightCam.offset_percent = 1 - (462.5f - Focus_Right.transform.localPosition.x) / 462.5f;
-        middleBar_rt = MiddleBar.GetComponent<RectTransform>();
         //rm.rectTransform.
     }
 
