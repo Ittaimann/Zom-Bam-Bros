@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour {
 	private bool fighting;
 	public float SpawnTime;
 	public GameObject enemy;
+    public int num_enemies;
 
 	public EnemyScriptable enemies;
 	public PlayerScriptable player1;
@@ -22,6 +23,9 @@ public class GameManager : MonoBehaviour {
         enemies.player2 = player2.loc;
         player1.isalive = true;
         player2.isalive = true;
+        player1.fighting = false;
+        player2.fighting = false;
+        enemies.enemyNumber = num_enemies;
 		StartCoroutine("enemySpawn");
 
 	}
@@ -39,12 +43,17 @@ public class GameManager : MonoBehaviour {
 
 	IEnumerator enemySpawn()
 	{
+        int count = 0;
 		while(enemies.enemyNumber > 0)
 		{
             yield return new WaitForSeconds(SpawnTime);
 			Transform spawn=(transform.GetChild(Random.Range(0,4)));
 
-			Instantiate(enemy,spawn);
+            if(count != num_enemies)
+            {
+                count++;
+                Instantiate(enemy, spawn);
+            }
 
         }
         player1.fighting = true;
