@@ -116,7 +116,8 @@ public class Player : MonoBehaviour {
   
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(playerInfo.fighting && other.tag[-1]!=playerInfo.playerNum){
+        if(playerInfo.fighting && other.tag!= "PlayerBullet" + playerInfo.playerNum)
+        {
             float damage=other.GetComponent<BulletMovement>().damage;
             Take_Damage(damage);
         }

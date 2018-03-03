@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour {
 
 	IEnumerator enemySpawn()
 	{
-		while(enemies.enemyNumber <= 0)
+		while(enemies.enemyNumber > 0)
 		{
             yield return new WaitForSeconds(SpawnTime);
 			Transform spawn=(transform.GetChild(Random.Range(0,4)));
