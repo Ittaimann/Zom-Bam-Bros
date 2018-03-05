@@ -19,6 +19,8 @@ public class Voronoi_Split_Mesh_Controller : MonoBehaviour {
     public float approach_speed, cutoff;
     public float x_min, x_max, y_min, y_max;
 
+    public float distance_between;
+
 
     // Use this for initialization
     void Start () {
@@ -31,7 +33,7 @@ public class Voronoi_Split_Mesh_Controller : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 
-        if ((player2.transform.position - player1.transform.position).magnitude < 33.7f)
+        if ((player2.transform.position - player1.transform.position).magnitude < distance_between)
         {
             //Set split screen off
             if (RightPivot.activeSelf)

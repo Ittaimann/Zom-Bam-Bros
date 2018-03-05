@@ -10,6 +10,7 @@ public class Player : MonoBehaviour {
     private float speed;
     private bool can_take_damage = true;
     private bool shooting = false;
+    private ParticleSystem shoot_ps;
 
     //should get this from the gun
     private float shoot_wait = 1;
@@ -32,6 +33,7 @@ public class Player : MonoBehaviour {
         playerInfo.loc=transform;
 		health=playerInfo.StartHealth;
 		speed=playerInfo.StartSpeed;
+        shoot_ps = GetComponentInChildren<ParticleSystem>();
 
         rb2d = GetComponent<Rigidbody2D>();
 
@@ -63,9 +65,12 @@ public class Player : MonoBehaviour {
 		direction.Normalize();
 		
         if(direction != Vector2.zero)
-			child.eulerAngles = new Vector3( 0, 0, Mathf.Atan2(direction.x,direction.y) * Mathf.Rad2Deg);
-        
-        if(!shooting && Input.GetAxisRaw("shoot" + playerInfo.playerNum) >= .5)
+        {
+            child.eulerAngles = new Vector3(0, 0, Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg);
+            transform.GetChild(0).eulerAngles = child.eulerAngles + new Vector3(0, 0, -90f);
+        }
+
+        if (!shooting && Input.GetAxisRaw("shoot" + playerInfo.playerNum) >= .5)
 	    	StartCoroutine(shoot(child.rotation));
 	}
 
@@ -84,13 +89,13 @@ public class Player : MonoBehaviour {
         shooting=true;
         
         StartCoroutine(ScreenShake(1));
-        transform.GetChild(2).rotation = angle;
-        transform.GetChild(2).GetComponent<ParticleSystem>().Emit(40);
+        //shoot_ps.gameObject.rotation = angle;
+        shoot_ps.Emit(40);
         var bullet = pool.RequestBullet("PlayerBullet" + playerInfo.playerNum);
      
         if(bullet!=null)
         {
-		    bullet.transform.position=transform.position;
+		    bullet.transform.position=shoot_ps.transform.position;
 		    bullet.transform.rotation=angle;
         }
 
@@ -122,8 +127,6 @@ public class Player : MonoBehaviour {
   
     void OnTriggerEnter2D(Collider2D other)
     {
-
-        print(other.name);
 
         if(other.tag == "SpeedUp")
         {
