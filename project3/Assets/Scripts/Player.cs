@@ -11,6 +11,8 @@ public class Player : MonoBehaviour {
     private bool can_take_damage = true;
     private bool shooting = false;
     private ParticleSystem shoot_ps;
+    private AudioSource powerupAudio;
+    public AudioSource shootAudio;
 
     //should get this from the gun
     private float shoot_wait = 1;
@@ -34,6 +36,7 @@ public class Player : MonoBehaviour {
 		health=playerInfo.StartHealth;
 		speed=playerInfo.StartSpeed;
         shoot_ps = GetComponentInChildren<ParticleSystem>();
+        powerupAudio = GetComponent<AudioSource>();
 
         rb2d = GetComponent<Rigidbody2D>();
 
@@ -87,7 +90,7 @@ public class Player : MonoBehaviour {
 	{
 
         shooting=true;
-        
+        shootAudio.Play();
         StartCoroutine(ScreenShake(1));
         //shoot_ps.gameObject.rotation = angle;
         shoot_ps.Emit(40);
@@ -130,18 +133,24 @@ public class Player : MonoBehaviour {
 
         if(other.tag == "SpeedUp")
         {
+            powerupAudio.clip = playerInfo.speedSound;
+            powerupAudio.Play();
             Destroy(other.gameObject);
             if(speed < speed_max)
                 speed += 5;
         }
         else if(other.tag == "HealthUp")
         {
+            powerupAudio.clip = playerInfo.healthSound;
+            powerupAudio.Play();
             Destroy(other.gameObject);
             if (health < health_max)
                 health += 1;
         }
         else if(other.tag == "ShootSpeedUp")
         {
+            powerupAudio.clip = playerInfo.shootspeedSound;
+            powerupAudio.Play();
             Destroy(other.gameObject);
             if (shoot_wait > shoot_speed_max)
                 shoot_wait -= 0.1f;

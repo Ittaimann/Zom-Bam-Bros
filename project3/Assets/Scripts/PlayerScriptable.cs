@@ -13,6 +13,9 @@ public class PlayerScriptable : ScriptableObject{
     public bool isalive;
 	public bool fighting;
 
+    public AudioClip healthSound;
+    public AudioClip shootspeedSound;
+    public AudioClip speedSound;
 	
 
 
