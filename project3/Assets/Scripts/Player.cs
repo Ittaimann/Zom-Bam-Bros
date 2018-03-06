@@ -8,7 +8,7 @@ public class Player : MonoBehaviour {
 	private Rigidbody2D rb2d;
     private float health;
     private float speed;
-    private bool can_take_damage = true;
+    private bool can_take_damage = true, damage_wait = false;
     private bool shooting = false;
     private ParticleSystem shoot_ps;
     private AudioSource powerupAudio;
@@ -124,8 +124,8 @@ public class Player : MonoBehaviour {
         StartCoroutine(ScreenShake(5));
         if (!can_take_damage)
             return;
-
-        StartCoroutine(Invulnerability_Frames());
+        if(!damage_wait)
+            StartCoroutine(Invulnerability_Frames());
 
         health -= dam;
 
@@ -206,6 +206,9 @@ public class Player : MonoBehaviour {
 
     IEnumerator Invulnerability_Frames()
     {
+        damage_wait = true;
+        yield return new WaitForSeconds(0.1f);
+        damage_wait = false;
         can_take_damage = false;
         SpriteRenderer sr = GetComponentInChildren<SpriteRenderer>();
         for(int i = 0; i < 7; ++i)
