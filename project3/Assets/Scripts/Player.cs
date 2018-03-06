@@ -19,7 +19,7 @@ public class Player : MonoBehaviour {
     private int bullets_to_shoot = 1;
     private float spread = 2;
     private float damage = 1;
-    private float bulletSpeed;
+    private float bulletSpeed = 1;
     // public scriptables
     public PoolApi pool;
 	public PlayerScriptable playerInfo;
@@ -51,8 +51,8 @@ public class Player : MonoBehaviour {
     {
         if( playerInfo.isalive )
         {
-            PlayerMove();
             aim(); // SHOOT IS CALLED HERE
+            PlayerMove();
         }
     }
 
@@ -92,12 +92,11 @@ public class Player : MonoBehaviour {
 
 	IEnumerator shoot(Quaternion angle)
 	{
-
         shooting=true;
         shootAudio.pitch = Random.Range(0.9f, 1.1f);
         shootAudio.Play();
-        StartCoroutine(ScreenShake(1));
-        shoot_ps.Emit(40);
+        StartCoroutine(ScreenShake(1 * damage));
+        shoot_ps.Emit((int) (40 * damage));
         for(int i = 0; i < bullets_to_shoot; ++i)
         {
             var bullet = pool.RequestBullet("PlayerBullet" + playerInfo.playerNum);
