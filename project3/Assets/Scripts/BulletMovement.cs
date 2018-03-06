@@ -36,6 +36,7 @@ public class BulletMovement : MonoBehaviour {
 	
 	public void ReturnToPool()
 	{
+        CancelInvoke();
 		gameObject.SetActive(false);
 		pool.returnBullet(gameObject);
 	}

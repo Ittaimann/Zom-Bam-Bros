@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5af567c516dbd854784a4943356694af, type: 3}
   m_Name: Enemy
   m_EditorClassIdentifier: 
-  health: 1
+  health: 3
   player1: {fileID: 0}
   player2: {fileID: 0}
   enemyNumber: 0

@@ -19,6 +19,7 @@ public class Player : MonoBehaviour {
     private int bullets_to_shoot = 1;
     private float spread = 2;
     private float damage = 1;
+    private float bulletSpeed;
     // public scriptables
     public PoolApi pool;
 	public PlayerScriptable playerInfo;
@@ -93,12 +94,16 @@ public class Player : MonoBehaviour {
 	{
 
         shooting=true;
+        shootAudio.pitch = Random.Range(0.9f, 1.1f);
         shootAudio.Play();
         StartCoroutine(ScreenShake(1));
         shoot_ps.Emit(40);
         for(int i = 0; i < bullets_to_shoot; ++i)
         {
             var bullet = pool.RequestBullet("PlayerBullet" + playerInfo.playerNum);
+            BulletMovement bm = bullet.GetComponent<BulletMovement>();
+            bm.damage = damage;
+            bm.speed *= bulletSpeed;
             bullet.GetComponent<BulletMovement>().damage = damage;
             if (bullet != null)
             {
@@ -148,6 +153,7 @@ public class Player : MonoBehaviour {
                 shootAudio.clip = gp.shootSound;
                 shoot_speed_max = gp.reload / 2f;
                 damage = gp.damage;
+                bulletSpeed = gp.bulletSpeed;
                 powerupAudio.clip = playerInfo.equipSound;
                 powerupAudio.Play();
             }
