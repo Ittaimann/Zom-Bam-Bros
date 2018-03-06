@@ -40,6 +40,8 @@ public class Enemy_Movement : MonoBehaviour {
             to_target = (player.position - transform.position).magnitude > (player2.position - transform.position).magnitude ? player2 : player;
         rb.velocity /= 1.05f;
 
+        transform.GetChild(0).rotation = Quaternion.LookRotation(Vector3.forward, to_target.position - transform.position);
+
         if (rb.velocity.magnitude < maxVelocity)
             rb.velocity += speed * Time.deltaTime * (Vector2) (to_target.position - transform.position).normalized;
 
@@ -53,7 +55,6 @@ public class Enemy_Movement : MonoBehaviour {
 
     IEnumerator Hit_Player(GameObject player)
     {
-        print("hit");
         //print("Direction thing: " + (player.transform.position - transform.position).normalized * hitStrength);
         can_hit = false;
         //Hits the player back on contact (doesn't really work but seems like a cool idea)
