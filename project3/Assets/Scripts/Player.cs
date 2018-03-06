@@ -155,6 +155,7 @@ public class Player : MonoBehaviour {
                 bulletSpeed = gp.bulletSpeed;
                 powerupAudio.clip = playerInfo.equipSound;
                 powerupAudio.Play();
+                Destroy(other.gameObject);
             }
         }
     }
