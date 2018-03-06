@@ -15,8 +15,9 @@ MonoBehaviour:
   StartSpeed: 10
   playerNum: 2
   loc: {fileID: 0}
-  isalive: 1
+  isalive: 0
   fighting: 1
   healthSound: {fileID: 8300000, guid: a5fd1712bfc000b449eaca5cf672c354, type: 3}
   shootspeedSound: {fileID: 8300000, guid: 5a5e968cf9f15f646a792cdf696d3fc6, type: 3}
   speedSound: {fileID: 8300000, guid: 26612da843b585c418a2b7a6608d9f1e, type: 3}
+  equipSound: {fileID: 8300000, guid: 2690429efafe8af4fb23a6501485f862, type: 3}

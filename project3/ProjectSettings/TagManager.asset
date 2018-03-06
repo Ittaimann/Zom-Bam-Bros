@@ -10,6 +10,7 @@ TagManager:
   - SpeedUp
   - HealthUp
   - ShootSpeedUp
+  - Gun
   layers:
   - Default
   - TransparentFX

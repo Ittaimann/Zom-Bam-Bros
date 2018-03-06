@@ -16,6 +16,7 @@ public class PlayerScriptable : ScriptableObject{
     public AudioClip healthSound;
     public AudioClip shootspeedSound;
     public AudioClip speedSound;
+    public AudioClip equipSound;
 	
 
 

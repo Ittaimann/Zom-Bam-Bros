@@ -16,6 +16,9 @@ public class Player : MonoBehaviour {
 
     //should get this from the gun
     private float shoot_wait = 1;
+    private int bullets_to_shoot = 1;
+    private float spread = 2;
+    private float damage = 1;
     // public scriptables
     public PoolApi pool;
 	public PlayerScriptable playerInfo;
@@ -92,15 +95,19 @@ public class Player : MonoBehaviour {
         shooting=true;
         shootAudio.Play();
         StartCoroutine(ScreenShake(1));
-        //shoot_ps.gameObject.rotation = angle;
         shoot_ps.Emit(40);
-        var bullet = pool.RequestBullet("PlayerBullet" + playerInfo.playerNum);
-     
-        if(bullet!=null)
+        for(int i = 0; i < bullets_to_shoot; ++i)
         {
-		    bullet.transform.position=shoot_ps.transform.position;
-		    bullet.transform.rotation=angle;
+            var bullet = pool.RequestBullet("PlayerBullet" + playerInfo.playerNum);
+            bullet.GetComponent<BulletMovement>().damage = damage;
+            if (bullet != null)
+            {
+                bullet.transform.position = shoot_ps.transform.position;
+                bullet.transform.rotation = angle;
+                bullet.transform.Rotate(0, 0, Random.Range(-spread, spread));
+            }
         }
+
 
         yield return new WaitForSeconds(shoot_wait);
 
@@ -126,6 +133,34 @@ public class Player : MonoBehaviour {
         //Play sounds for damage
     }
 
+
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if(other.tag == "Gun")
+        {
+            other.transform.GetChild(0).gameObject.SetActive(true);
+            if (Input.GetAxisRaw("Pickup1") > 0)
+            {
+                Gun_Properties gp = other.GetComponent<Gun_Properties>();
+                shoot_wait = gp.reload;
+                bullets_to_shoot = gp.bullets;
+                spread = gp.spreadDegrees;
+                shootAudio.clip = gp.shootSound;
+                shoot_speed_max = gp.reload / 2f;
+                damage = gp.damage;
+                powerupAudio.clip = playerInfo.equipSound;
+                powerupAudio.Play();
+            }
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if(other.tag == "Gun")
+        {
+            other.transform.GetChild(0).gameObject.SetActive(false);
+        }
+    }
 
   
     void OnTriggerEnter2D(Collider2D other)
@@ -155,18 +190,12 @@ public class Player : MonoBehaviour {
             if (shoot_wait > shoot_speed_max)
                 shoot_wait -= 0.1f;
         }
-        else if(other.tag == "Pistol")
-        {
-            //Press button to pick up 
-        }
         else if (playerInfo.fighting && other.tag != "PlayerBullet" + playerInfo.playerNum)
         {
             float damage = other.GetComponent<BulletMovement>().damage;
 
             Take_Damage(damage);
         }
-
-
     }
 
     IEnumerator Invulnerability_Frames()
