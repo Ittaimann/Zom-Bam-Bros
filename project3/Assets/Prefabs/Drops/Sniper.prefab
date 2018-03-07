@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 114211056565004016}
   - component: {fileID: 61110381848548998}
   - component: {fileID: 114495765654815236}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Sniper
   m_TagString: Gun
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4803058500152236}
   - component: {fileID: 212680697983092202}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: New Sprite (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54,7 +54,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4791772575177158}
   - component: {fileID: 212694732481599344}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: New Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

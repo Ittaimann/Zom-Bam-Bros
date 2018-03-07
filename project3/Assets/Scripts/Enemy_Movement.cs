@@ -11,6 +11,8 @@ public class Enemy_Movement : MonoBehaviour {
 
     public EnemyScriptable enemyinfo;
 
+    public LayerMask PlayerSearchLayers;
+
     [HideInInspector]
     public Transform target;
 
@@ -36,21 +38,43 @@ public class Enemy_Movement : MonoBehaviour {
 	void Update ()
     {
         Transform to_target = target;
+
         if(!to_target)
             to_target = (player.position - transform.position).magnitude > (player2.position - transform.position).magnitude ? player2 : player;
-        rb.velocity /= 1.05f;
 
-        transform.GetChild(0).rotation = Quaternion.LookRotation(Vector3.forward, to_target.position - transform.position);
 
-        if (rb.velocity.magnitude < maxVelocity)
-            rb.velocity += speed * Time.deltaTime * (Vector2) (to_target.position - transform.position).normalized;
-
-        if ((to_target.position - transform.position).magnitude < cutoffDistance)
+        RaycastHit2D rh = Physics2D.Raycast(transform.position, (to_target.transform.position - transform.position).normalized, Mathf.Infinity, PlayerSearchLayers);
+        if (rh.collider)
         {
-            rb.velocity = Vector2.zero;
-            if (can_hit)
-                StartCoroutine(Hit_Player(to_target.gameObject));
+            if(rh.collider.tag == "Player")
+            {
+                rb.velocity /= 1.05f;
+
+                transform.GetChild(0).rotation = Quaternion.LookRotation(Vector3.forward, to_target.position - transform.position);
+
+                if (rb.velocity.magnitude < maxVelocity)
+                    rb.velocity += speed * Time.deltaTime * (Vector2)(to_target.position - transform.position).normalized;
+
+                if ((to_target.position - transform.position).magnitude < cutoffDistance)
+                {
+                    rb.velocity = Vector2.zero;
+                    if (can_hit)
+                        StartCoroutine(Hit_Player(to_target.gameObject));
+                }
+            }
+            else
+            {
+                print("do A* of some sort maybe");
+                rb.velocity = Vector2.zero;
+            }
+
         }
+        else
+        {
+            print("y u no see anything");
+        }
+
+
     }
 
     IEnumerator Hit_Player(GameObject player)

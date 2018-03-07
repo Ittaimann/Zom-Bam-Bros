@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4299860487902114}
   - component: {fileID: 212079750373557340}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Art
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 61656310290384654}
   - component: {fileID: 61621929908411550}
   - component: {fileID: 114930668176259044}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -158,6 +158,9 @@ MonoBehaviour:
   player: {fileID: 0}
   player2: {fileID: 0}
   enemyinfo: {fileID: 11400000, guid: 652085d8df1e135499234e21e071f5cb, type: 2}
+  PlayerSearchLayers:
+    serializedVersion: 2
+    m_Bits: 4294966527
   target: {fileID: 0}
   speed: 50
   maxVelocity: 3.5

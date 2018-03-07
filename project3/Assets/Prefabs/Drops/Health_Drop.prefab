@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4348125072260264}
   - component: {fileID: 61776031467322064}
   - component: {fileID: 114603471197355420}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Health_Drop
   m_TagString: HealthUp
   m_Icon: {fileID: 0}
@@ -37,7 +37,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4203062210427644}
   - component: {fileID: 212724905595630028}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: New Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 114451645462121642}
   - component: {fileID: 61783355965683584}
   - component: {fileID: 114359064682255608}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Rifle
   m_TagString: Gun
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4930066775344796}
   - component: {fileID: 212573778566423446}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: New Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54,7 +54,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4276298014738908}
   - component: {fileID: 212954728438991702}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: New Sprite (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

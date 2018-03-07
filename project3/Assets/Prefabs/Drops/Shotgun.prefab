@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 114630191142984352}
   - component: {fileID: 61865948938526066}
   - component: {fileID: 114678458335158036}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Shotgun
   m_TagString: Gun
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4409706138731700}
   - component: {fileID: 212421107545720870}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: New Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54,7 +54,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4964931607213156}
   - component: {fileID: 212459017044169222}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: New Sprite (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

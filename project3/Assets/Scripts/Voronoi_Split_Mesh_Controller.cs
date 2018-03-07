@@ -33,7 +33,22 @@ public class Voronoi_Split_Mesh_Controller : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 
-        if ((player2.transform.position - player1.transform.position).magnitude < distance_between)
+        //Multiply the line distance by the screen ratio (16:9)
+        //if((player2.transform.position - player1.transform.position).magnitude < (Mathf.Cos(angle_between) + Mathf.Sin(angle_between)))
+
+        Vector2 distanceBetweenWithRatio;
+
+        float ratioAngle = Vector2.Angle(Vector2.right, player2.transform.position - player1.transform.position);
+
+        float x_val = Mathf.Cos(Mathf.Deg2Rad * ratioAngle);
+        float y_val = Mathf.Sin(Mathf.Deg2Rad * ratioAngle);
+
+        distanceBetweenWithRatio.x = distance_between * Mathf.Cos(Mathf.Deg2Rad * ratioAngle) * (x_val > 0 ? 16 : -16);
+        distanceBetweenWithRatio.y = distance_between * Mathf.Sin(Mathf.Deg2Rad * ratioAngle) * (y_val > 0 ? 9 : -9);
+
+        print(distanceBetweenWithRatio);
+
+        if ((player2.transform.position - player1.transform.position).magnitude < distanceBetweenWithRatio.magnitude)
         {
             //Set split screen off
             if (RightPivot.activeSelf)

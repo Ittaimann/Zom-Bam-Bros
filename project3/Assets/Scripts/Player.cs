@@ -196,6 +196,10 @@ public class Player : MonoBehaviour {
             if (shoot_wait > shoot_speed_max)
                 shoot_wait -= 0.1f;
         }
+        else if(other.tag == "Gun")
+        {
+            //This is here because it causes error because of the last else if
+        }
         else if (playerInfo.fighting && other.tag != "PlayerBullet" + playerInfo.playerNum)
         {
             float damage = other.GetComponent<BulletMovement>().damage;

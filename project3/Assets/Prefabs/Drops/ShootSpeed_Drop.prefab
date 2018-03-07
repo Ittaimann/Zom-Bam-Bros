@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4139110941325444}
   - component: {fileID: 212515041485188234}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: New Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37,7 +37,7 @@ GameObject:
   - component: {fileID: 4335382742075540}
   - component: {fileID: 61420886061681930}
   - component: {fileID: 114479124078558686}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ShootSpeed_Drop
   m_TagString: ShootSpeedUp
   m_Icon: {fileID: 0}
