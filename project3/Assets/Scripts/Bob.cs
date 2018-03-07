@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class Bob : MonoBehaviour {
 
-    private GameObject sprite;
+    public GameObject sprite;
 
 	// Use this for initialization
 	void Start () {
-        sprite = transform.GetChild(0).gameObject;
         StartCoroutine(UpandDown());
 	}
 

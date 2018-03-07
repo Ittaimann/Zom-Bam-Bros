@@ -36,6 +36,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4632757082641544}
   - component: {fileID: 61151033740578848}
+  - component: {fileID: 114527501057192866}
   m_Layer: 0
   m_Name: SpeedUp_Drop
   m_TagString: SpeedUp
@@ -63,7 +64,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1927248436434964}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.041623, y: 5.4955244, z: 0}
+  m_LocalPosition: {x: 11.221055, y: 7.451166, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4309283184974194}
@@ -93,8 +94,20 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.25, y: 2.25}
+  m_Size: {x: 6.36, y: 4.33}
   m_EdgeRadius: 0
+--- !u!114 &114527501057192866
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1927248436434964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc13950944f283848adc5ff05b5d9c55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 1073435897310844}
 --- !u!212 &212784099825309606
 SpriteRenderer:
   m_ObjectHideFlags: 1
