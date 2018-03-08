@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 	private bool fighting;
 	public float SpawnTime;
+    public Text zombieCount;
+
 
     [Header("Enemies")]
 	public GameObject enemy;
@@ -60,6 +63,7 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        zombieCount.text = "Zombie Count: " + enemies.enemyNumber;
 
         if (!player1.isalive && !player1_death_panel.activeSelf)
             player1_death_panel.SetActive(true);

@@ -46,4 +46,10 @@ public class BulletMovement : MonoBehaviour {
         return damage;
     }
 
+    void OnTriggerEnter2D(Collider2D c)
+    {
+        if (c.CompareTag("Walls"))
+            ReturnToPool();
+    }
+
 }

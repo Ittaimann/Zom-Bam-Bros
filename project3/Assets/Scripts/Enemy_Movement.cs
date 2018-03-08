@@ -43,11 +43,11 @@ public class Enemy_Movement : MonoBehaviour {
             to_target = (player.position - transform.position).magnitude > (player2.position - transform.position).magnitude ? player2 : player;
 
 
-        RaycastHit2D rh = Physics2D.Raycast(transform.position, (to_target.transform.position - transform.position).normalized, Mathf.Infinity, PlayerSearchLayers);
-        if (rh.collider)
-        {
-            if(rh.collider.tag == "Player")
-            {
+        //RaycastHit2D rh = Physics2D.Raycast(transform.position, (to_target.transform.position - transform.position).normalized, Mathf.Infinity, PlayerSearchLayers);
+        //if (rh.collider)
+        //{
+            //if(rh.collider.tag == "Player")
+            //{
                 rb.velocity /= 1.05f;
 
                 transform.GetChild(0).rotation = Quaternion.LookRotation(Vector3.forward, to_target.position - transform.position);
@@ -61,18 +61,18 @@ public class Enemy_Movement : MonoBehaviour {
                     if (can_hit)
                         StartCoroutine(Hit_Player(to_target.gameObject));
                 }
-            }
-            else
-            {
-                //print("do A* of some sort maybe");
-                rb.velocity = Vector2.zero;
-            }
+            //}
+            //else
+            //{
+            //    //print("do A* of some sort maybe");
+            //    rb.velocity = Vector2.zero;
+            //}
 
-        }
-        else
-        {
-            print("y u no see anything");
-        }
+        //}
+        //else
+        //{
+        //    print("y u no see anything");
+        //}
 
 
     }

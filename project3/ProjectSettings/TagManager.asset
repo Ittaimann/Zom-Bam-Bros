@@ -11,6 +11,7 @@ TagManager:
   - HealthUp
   - ShootSpeedUp
   - Gun
+  - Walls
   layers:
   - Default
   - TransparentFX
