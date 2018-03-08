@@ -140,7 +140,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullets: 5
   spreadDegrees: 15
-  bulletSpeed: 0.7
+  bulletSpeed: 35
   reload: 1
   damage: 1
   shootSound: {fileID: 8300000, guid: 64d26dd593c3c42468a355892983613e, type: 3}

@@ -19,7 +19,7 @@ public class Player : MonoBehaviour {
     private int bullets_to_shoot = 1;
     private float spread = 2;
     private float damage = 1;
-    private float bulletSpeed = 1;
+    private float bulletSpeed = 50;
     // public scriptables
     public PoolApi pool;
 	public PlayerScriptable playerInfo;
@@ -102,7 +102,7 @@ public class Player : MonoBehaviour {
             var bullet = pool.RequestBullet("PlayerBullet" + playerInfo.playerNum);
             BulletMovement bm = bullet.GetComponent<BulletMovement>();
             bm.damage = damage;
-            bm.speed *= bulletSpeed;
+            bm.speed = bulletSpeed;
             bullet.GetComponent<BulletMovement>().damage = damage;
             if (bullet != null)
             {

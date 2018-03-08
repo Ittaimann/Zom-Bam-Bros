@@ -77,25 +77,21 @@ public class GameManager : MonoBehaviour {
 	IEnumerator enemySpawn()
 	{
         int count = 0;
-		while(enemies.enemyNumber > 0)
+		while(count < num_enemies)
 		{
             yield return new WaitForSeconds(Random.Range(SpawnTime - 0.5f, SpawnTime + 0.5f));
 			Transform spawn=(transform.GetChild(Random.Range(0,4)));
+            count++;
+            GameObject e = Instantiate(enemy, spawn);
+            e.GetComponent<Enemy_Movement>().speed += Random.Range(-10f, 30f);
+            int rand = Random.Range(0, 100);
 
-            if(count != num_enemies)
-            {
-                count++;
-                GameObject e = Instantiate(enemy, spawn);
-                e.GetComponent<Enemy_Movement>().speed += Random.Range(-10f, 30f);
-                int rand = Random.Range(0, 100);
-
-                if(rand > 40 && rand < 60)
-                    e.GetComponent<Enemy_Health>().drop = healthDrop;
-                else if(rand <= 60 && rand < 75)
-                    e.GetComponent<Enemy_Health>().drop = speedDrop;
-                else if(rand <= 75 && rand < 85)
-                    e.GetComponent<Enemy_Health>().drop = shootspeedDrop;
-            }
+            if(rand > 40 && rand < 60)
+                e.GetComponent<Enemy_Health>().drop = healthDrop;
+            else if(rand <= 60 && rand < 75)
+                e.GetComponent<Enemy_Health>().drop = speedDrop;
+            else if(rand <= 75 && rand < 85)
+                e.GetComponent<Enemy_Health>().drop = shootspeedDrop;
 
         }
         player1.fighting = true;
