@@ -51,7 +51,8 @@ public class GameManager : MonoBehaviour {
         {
             for (int x = 0; x < sizex; ++x)
             {
-                enemies.grid[y, x] = new Vector3(x, y, 0);
+                //The times 5 accounts for the scaled up tiles
+                enemies.grid[y, x] = new Vector3(x * 5, y * 5, 0);
             }
         }
     }

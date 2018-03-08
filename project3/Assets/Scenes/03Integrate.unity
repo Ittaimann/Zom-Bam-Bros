@@ -160,6 +160,11 @@ GameObject:
   m_PrefabParentObject: {fileID: 1531532797027250, guid: d0672d96630af3944bbd4977094ece7c,
     type: 2}
   m_PrefabInternal: {fileID: 612607694}
+--- !u!4 &99724120 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4229785004613972, guid: d0672d96630af3944bbd4977094ece7c,
+    type: 2}
+  m_PrefabInternal: {fileID: 612607694}
 --- !u!1001 &106797538
 Prefab:
   m_ObjectHideFlags: 0
@@ -469,6 +474,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   es: {fileID: 11400000, guid: 652085d8df1e135499234e21e071f5cb, type: 2}
+  Player: {fileID: 99724120}
 --- !u!1 &292197900
 GameObject:
   m_ObjectHideFlags: 0
@@ -1253,7 +1259,7 @@ Prefab:
     - target: {fileID: 114768142298072352, guid: 5656e113999538743b35fb460bea7b86,
         type: 2}
       propertyPath: num_enemies
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114768142298072352, guid: 5656e113999538743b35fb460bea7b86,
         type: 2}
