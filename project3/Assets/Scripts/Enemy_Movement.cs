@@ -30,7 +30,7 @@ public class Enemy_Movement : MonoBehaviour {
 	void Start () {
         player = enemyinfo.player1;
         player2 = enemyinfo.player2;
-        Debug.LogWarning(player+ " "+ player2);
+        //Debug.LogWarning(player+ " "+ player2);
         rb = GetComponent<Rigidbody2D>();
 	}
 	
@@ -81,9 +81,9 @@ public class Enemy_Movement : MonoBehaviour {
     {
         //print("Direction thing: " + (player.transform.position - transform.position).normalized * hitStrength);
         can_hit = false;
+        player.GetComponent<Player>().Take_Damage(damage);
         //Hits the player back on contact (doesn't really work but seems like a cool idea)
         //player.GetComponent<Rigidbody2D>().AddForce((player.transform.position - transform.position).normalized * hitStrength);
-        player.GetComponent<Player>().Take_Damage(damage);
         yield return new WaitForSeconds(0.5f);
         can_hit = true;
     }

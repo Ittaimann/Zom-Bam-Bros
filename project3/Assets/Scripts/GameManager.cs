@@ -59,6 +59,7 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
         if (!player1.isalive && !player1_death_panel.activeSelf)
             player1_death_panel.SetActive(true);
         if (!player2.isalive && !player2_death_panel.activeSelf)
