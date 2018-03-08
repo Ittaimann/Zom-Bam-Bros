@@ -64,7 +64,7 @@ public class Enemy_Movement : MonoBehaviour {
             }
             else
             {
-                print("do A* of some sort maybe");
+                //print("do A* of some sort maybe");
                 rb.velocity = Vector2.zero;
             }
 

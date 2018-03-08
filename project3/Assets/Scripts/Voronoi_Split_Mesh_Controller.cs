@@ -46,7 +46,7 @@ public class Voronoi_Split_Mesh_Controller : MonoBehaviour {
         distanceBetweenWithRatio.x = distance_between * Mathf.Cos(Mathf.Deg2Rad * ratioAngle) * (x_val > 0 ? 16 : -16);
         distanceBetweenWithRatio.y = distance_between * Mathf.Sin(Mathf.Deg2Rad * ratioAngle) * (y_val > 0 ? 9 : -9);
 
-        print(distanceBetweenWithRatio);
+        //print(distanceBetweenWithRatio);
 
         if ((player2.transform.position - player1.transform.position).magnitude < distanceBetweenWithRatio.magnitude)
         {

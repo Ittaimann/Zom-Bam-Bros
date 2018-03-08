@@ -24,6 +24,9 @@ public class GameManager : MonoBehaviour {
     public GameObject speedDrop;
     public GameObject shootspeedDrop;
 
+    [Header("Pathfinding")]
+    public Vector2[] positionsOfObstacles;
+    public int xSize, ySize;
 
 	// Use this for initialization
 	void Start () {
@@ -35,9 +38,24 @@ public class GameManager : MonoBehaviour {
         player1.fighting = false;
         player2.fighting = false;
         enemies.enemyNumber = num_enemies;
+        CreateGrid(xSize, ySize);
 		StartCoroutine("enemySpawn");
 
 	}
+
+
+    private void CreateGrid(int sizex, int sizey)
+    {
+        enemies.grid = new Vector3[sizey, sizex];
+        for (int y = 0; y < sizey; ++y)
+        {
+            for (int x = 0; x < sizex; ++x)
+            {
+                enemies.grid[y, x] = new Vector3(x, y, 0);
+            }
+        }
+    }
+
 	
 	// Update is called once per frame
 	void Update () {
