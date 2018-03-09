@@ -2,9 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public class Tup3
+{
+    public Tup3 (int _x, int _y, int _f = 0)
+    {
+        x = _x;
+        y = _y;
+        f = _f;
+    }
+
+    int x;
+    int y;
+    int f;
+    Tup3 parent;
+}
+
+
 public class AStarTesting : MonoBehaviour {
 
     public Transform Player;
+
+    private Vector3[,] grid;
 
     [Header("Pathfinding")]
     public Vector2[] positionsOfObstacles;
@@ -82,30 +100,30 @@ return total_path
     void Update()
     {
 
-        grid = new Vector3[es.grid.GetLength(0), es.grid.GetLength(1)];
-        grid = es.grid;
-        Get_Path();
+        CreateGrid(xSize, ySize);
+        Get_Path(new Tup3(5, 0), new Tup3(50, 50));
 
     }
 
 
     private void CreateGrid(int sizex, int sizey)
     {
-        grid = new Vector3[sizey, sizex];
+        grid = new Vector3[sizex, sizey];
         for (int y = 0; y < sizey; ++y)
         {
             for (int x = 0; x < sizex; ++x)
             {
                 //The times 5 accounts for the scaled up tiles
-                grid[y, x] = new Vector3(x * 5, y * 5, 0);
+                //Need to make it take into account the negative side of things
+                grid[sizex, sizey] = new Vector3(x * 5, y * 5, 0);
             }
         }
     }
 
-    List<Vector3> Get_Path()
+    List<Tup3> Get_Path(Tup3 from, Tup3 to)
     {
-        List<Vector3> open = new List<Vector3>();
-        List<Vector3> closed = new List<Vector3>();
+        List<Tup3> open = new List<Tup3>();
+        List<Tup3> closed = new List<Tup3>();
 
         return closed;
     }
