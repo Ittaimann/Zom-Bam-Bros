@@ -144,6 +144,7 @@ MonoBehaviour:
   reload: 1.5
   damage: 5
   shootSound: {fileID: 8300000, guid: 1ccb126f76701ae47a1766747c5ec58c, type: 3}
+  piercing: 2
 --- !u!114 &114495765654815236
 MonoBehaviour:
   m_ObjectHideFlags: 1

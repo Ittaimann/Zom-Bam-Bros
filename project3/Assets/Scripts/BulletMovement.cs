@@ -6,6 +6,7 @@ public class BulletMovement : MonoBehaviour {
 
 	public float speed;
     public float damage;
+    public int piercing = 0;
 
 	private Rigidbody2D rb2d;
 

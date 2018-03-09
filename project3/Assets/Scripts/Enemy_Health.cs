@@ -20,8 +20,10 @@ public class Enemy_Health : MonoBehaviour {
     {
         if (c.tag == "PlayerBullet1" || c.tag == "PlayerBullet2")
         {
-            Take_Damage(c.GetComponent<BulletMovement>().GetDamage());
-            c.GetComponent<BulletMovement>().ReturnToPool();
+            BulletMovement bm = c.GetComponent<BulletMovement>();
+            Take_Damage(bm.GetDamage());
+            if (bm.piercing-- == 0)
+                bm.ReturnToPool();
         }
     }
 
@@ -33,7 +35,7 @@ public class Enemy_Health : MonoBehaviour {
             es.DecEnemyNumber();
             if(drop!= null)
                 Instantiate( drop, transform.position, transform.rotation );
-            
+           
             Destroy(gameObject);
         }
     }

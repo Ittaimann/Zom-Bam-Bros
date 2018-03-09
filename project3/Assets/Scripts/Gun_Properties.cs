@@ -10,4 +10,5 @@ public class Gun_Properties : MonoBehaviour {
     public float reload;
     public float damage;
     public AudioClip shootSound;
+    public int piercing;
 }

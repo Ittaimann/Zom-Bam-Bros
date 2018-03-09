@@ -20,6 +20,7 @@ public class Player : MonoBehaviour {
     private float spread = 2;
     private float damage = 1;
     private float bulletSpeed = 50;
+    private int piercing = 0;
     // public scriptables
     public PoolApi pool;
 	public PlayerScriptable playerInfo;
@@ -103,6 +104,7 @@ public class Player : MonoBehaviour {
             BulletMovement bm = bullet.GetComponent<BulletMovement>();
             bm.damage = damage;
             bm.speed = bulletSpeed;
+            bm.piercing = piercing;
             bullet.GetComponent<BulletMovement>().damage = damage;
             if (bullet != null)
             {
@@ -152,6 +154,7 @@ public class Player : MonoBehaviour {
                 shootAudio.clip = gp.shootSound;
                 shoot_speed_max = gp.reload / 2f;
                 damage = gp.damage;
+                piercing = gp.piercing;
                 bulletSpeed = gp.bulletSpeed;
                 powerupAudio.clip = playerInfo.equipSound;
                 powerupAudio.Play();

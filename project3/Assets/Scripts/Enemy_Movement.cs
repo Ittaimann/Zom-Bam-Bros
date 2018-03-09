@@ -48,19 +48,13 @@ public class Enemy_Movement : MonoBehaviour {
         //{
             //if(rh.collider.tag == "Player")
             //{
-                rb.velocity /= 1.05f;
+        rb.velocity /= 1.05f;
 
-                transform.GetChild(0).rotation = Quaternion.LookRotation(Vector3.forward, to_target.position - transform.position);
+        transform.GetChild(0).rotation = Quaternion.LookRotation(Vector3.forward, to_target.position - transform.position);
 
-                if (rb.velocity.magnitude < maxVelocity)
-                    rb.velocity += speed * Time.deltaTime * (Vector2)(to_target.position - transform.position).normalized;
+        if (rb.velocity.magnitude < maxVelocity)
+            rb.velocity += speed * Time.deltaTime * (Vector2)(to_target.position - transform.position).normalized;
 
-                if ((to_target.position - transform.position).magnitude < cutoffDistance)
-                {
-                    rb.velocity = Vector2.zero;
-                    if (can_hit)
-                        StartCoroutine(Hit_Player(to_target.gameObject));
-                }
             //}
             //else
             //{
@@ -75,6 +69,17 @@ public class Enemy_Movement : MonoBehaviour {
         //}
 
 
+    }
+
+    void OnTriggerStay2D(Collider2D c)
+    {
+        if (c.CompareTag("Player"))
+        {
+            rb.velocity = Vector2.zero;
+            if (can_hit)
+                StartCoroutine(Hit_Player(c.gameObject));
+
+        }
     }
 
     IEnumerator Hit_Player(GameObject player)
