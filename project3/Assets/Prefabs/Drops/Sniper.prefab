@@ -138,6 +138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 979490ffb52b9104eaf7880dc05b2748, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gunName: Sniper
   bullets: 1
   spreadDegrees: 0
   bulletSpeed: 100
@@ -145,6 +146,7 @@ MonoBehaviour:
   damage: 5
   shootSound: {fileID: 8300000, guid: 1ccb126f76701ae47a1766747c5ec58c, type: 3}
   piercing: 2
+  laserLocation: {x: 4.18, y: -1.04}
 --- !u!114 &114495765654815236
 MonoBehaviour:
   m_ObjectHideFlags: 1

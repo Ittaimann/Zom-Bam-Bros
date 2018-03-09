@@ -29,6 +29,8 @@ public class Player : MonoBehaviour {
     [SerializeField]
     private float speed_max, health_max, shoot_speed_max;
 
+    public Sprite rifle, sniper, shotgun;
+
 
     //follow cam
     private GameObject following_camera;
@@ -145,9 +147,20 @@ public class Player : MonoBehaviour {
         if(other.tag == "Gun")
         {
             other.transform.GetChild(0).gameObject.SetActive(true);
+
             if (Input.GetAxisRaw("Pickup1") > 0)
-            {
+            { 
                 Gun_Properties gp = other.GetComponent<Gun_Properties>();
+
+                if (gp.gunName == "Sniper")
+                    transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = sniper;
+                else if(gp.gunName == "Rifle")
+                    transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = rifle;
+                else if(gp.gunName == "Shotgun")
+                    transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = shotgun;
+
+                transform.GetChild(1).GetChild(0).localPosition = gp.laserLocation;
+
                 shoot_wait = gp.reload;
                 bullets_to_shoot = gp.bullets;
                 spread = gp.spreadDegrees;

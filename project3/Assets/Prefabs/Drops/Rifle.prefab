@@ -150,12 +150,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 979490ffb52b9104eaf7880dc05b2748, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gunName: Rifle
   bullets: 1
   spreadDegrees: 4
   bulletSpeed: 50
   reload: 0.3
   damage: 0.7
   shootSound: {fileID: 8300000, guid: 1ccb126f76701ae47a1766747c5ec58c, type: 3}
+  piercing: 0
+  laserLocation: {x: 1.6, y: -1.05}
 --- !u!212 &212573778566423446
 SpriteRenderer:
   m_ObjectHideFlags: 1
