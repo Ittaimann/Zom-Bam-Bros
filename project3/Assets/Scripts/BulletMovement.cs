@@ -23,7 +23,7 @@ public class BulletMovement : MonoBehaviour {
 
 	void OnEnable()
 	{
-	   Invoke("ReturnToPool",5);
+	   Invoke("ReturnToPool",2);
 	}
 
 	void Update()

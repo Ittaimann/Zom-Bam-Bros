@@ -76,12 +76,12 @@ public class GameManager : MonoBehaviour {
 
 	IEnumerator enemySpawn()
 	{
-        int count = 0;
-		while(count < num_enemies)
+        float offset = 0.5f;
+		while(true)
 		{
-            yield return new WaitForSeconds(Random.Range(SpawnTime - 0.5f, SpawnTime + 0.5f));
+            yield return new WaitForSeconds(Random.Range(SpawnTime - offset, SpawnTime + offset));
 			Transform spawn=(transform.GetChild(Random.Range(0,4)));
-            count++;
+
             GameObject e = Instantiate(enemy, spawn);
             e.GetComponent<Enemy_Movement>().maxVelocity += Random.Range(-1f, 1f);
             int rand = Random.Range(0, 100);
@@ -92,12 +92,15 @@ public class GameManager : MonoBehaviour {
                 e.GetComponent<Enemy_Health>().drop = speedDrop;
             else if(rand >= 50 && rand < 53)
                 e.GetComponent<Enemy_Health>().drop = shootspeedDrop;
-        }
 
-        yield return new WaitUntil(canFight);
-        player1.fighting = true;
-        player2.fighting = true;
-	}
+            if(canFight())
+            {
+                player1.fighting = true;
+                player2.fighting = true;
+                offset = 0.2f;
+            }
+        }
+    }
 
     private bool canFight()
     {
