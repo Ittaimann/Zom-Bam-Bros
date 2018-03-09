@@ -15,6 +15,7 @@ public class Enemy_Movement : MonoBehaviour {
 
     [HideInInspector]
     public Transform target;
+    private Transform to_target;
 
     [Header("Variables")]
     public float speed;
@@ -25,6 +26,11 @@ public class Enemy_Movement : MonoBehaviour {
 
     private bool can_hit = true;
 
+    [Header("Sounds")]
+    public AudioClip[] randomSounds;
+    public AudioClip[] attackSounds;
+    private AudioSource audioPlayer;
+    public float maxHearableDistance;
 
 	// Use this for initialization
 	void Start () {
@@ -32,15 +38,14 @@ public class Enemy_Movement : MonoBehaviour {
         player2 = enemyinfo.player2;
         //Debug.LogWarning(player+ " "+ player2);
         rb = GetComponent<Rigidbody2D>();
+        audioPlayer = GetComponent<AudioSource>();
+        StartCoroutine(PlayRandomSounds());
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
-        Transform to_target = target;
-
-        if(!to_target)
-            to_target = (player.position - transform.position).magnitude > (player2.position - transform.position).magnitude ? player2 : player;
+        to_target = (player.position - transform.position).magnitude > (player2.position - transform.position).magnitude ? player2 : player;
 
 
         //RaycastHit2D rh = Physics2D.Raycast(transform.position, (to_target.transform.position - transform.position).normalized, Mathf.Infinity, PlayerSearchLayers);
@@ -86,10 +91,28 @@ public class Enemy_Movement : MonoBehaviour {
     {
         //print("Direction thing: " + (player.transform.position - transform.position).normalized * hitStrength);
         can_hit = false;
+        audioPlayer.volume = 1;
+        audioPlayer.pitch = Random.Range(0.9f, 1.1f);
+        audioPlayer.clip = attackSounds[Random.Range(0, attackSounds.Length)];
+        audioPlayer.Play();
         player.GetComponent<Player>().Take_Damage(damage);
         //Hits the player back on contact (doesn't really work but seems like a cool idea)
         //player.GetComponent<Rigidbody2D>().AddForce((player.transform.position - transform.position).normalized * hitStrength);
         yield return new WaitForSeconds(0.5f);
         can_hit = true;
+    }
+
+    IEnumerator PlayRandomSounds()
+    {
+        while(true)
+        {
+            yield return new WaitForSeconds(Random.Range(5f, 7f));
+
+            audioPlayer.volume = ((maxHearableDistance - (transform.position - to_target.position).magnitude) / maxHearableDistance);
+
+            audioPlayer.pitch = Random.Range(0.9f, 1.1f);
+            audioPlayer.clip = randomSounds[Random.Range(0, randomSounds.Length)];
+            audioPlayer.Play();
+        }
     }
 }
