@@ -130,7 +130,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 50
   damage: 1
+  piercing: 0
   pool: {fileID: 11400000, guid: 032e1ac3e96b1bc4e91369871cf6d99e, type: 2}
+  bulletExplosion: {fileID: 1425351758297378, guid: 8f4c3ea2806a2f944825299b046c09e5,
+    type: 2}
 --- !u!212 &212977282115808050
 SpriteRenderer:
   m_ObjectHideFlags: 1

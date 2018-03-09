@@ -12,6 +12,8 @@ public class BulletMovement : MonoBehaviour {
 
 	public PoolApi pool;
 
+    public GameObject bulletExplosion;
+
 
 	void Awake()
 	{
@@ -37,6 +39,7 @@ public class BulletMovement : MonoBehaviour {
 	
 	public void ReturnToPool()
 	{
+        Instantiate(bulletExplosion, transform.position, Quaternion.identity);
         CancelInvoke();
 		gameObject.SetActive(false);
 		pool.returnBullet(gameObject);
