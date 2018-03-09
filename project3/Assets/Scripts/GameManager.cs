@@ -88,13 +88,19 @@ public class GameManager : MonoBehaviour {
 
             if(rand > 30 && rand < 35)
                 e.GetComponent<Enemy_Health>().drop = healthDrop;
-            else if(rand <= 40 && rand < 44)
+            else if(rand >= 40 && rand < 44)
                 e.GetComponent<Enemy_Health>().drop = speedDrop;
-            else if(rand <= 50 && rand < 53)
+            else if(rand >= 50 && rand < 53)
                 e.GetComponent<Enemy_Health>().drop = shootspeedDrop;
-
         }
+
+        yield return new WaitUntil(canFight);
         player1.fighting = true;
         player2.fighting = true;
 	}
+
+    private bool canFight()
+    {
+        return enemies.enemyNumber == 0;
+    }
 }
