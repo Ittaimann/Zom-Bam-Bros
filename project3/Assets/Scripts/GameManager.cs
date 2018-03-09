@@ -83,14 +83,14 @@ public class GameManager : MonoBehaviour {
 			Transform spawn=(transform.GetChild(Random.Range(0,4)));
             count++;
             GameObject e = Instantiate(enemy, spawn);
-            e.GetComponent<Enemy_Movement>().speed += Random.Range(-10f, 30f);
+            e.GetComponent<Enemy_Movement>().maxVelocity += Random.Range(-1f, 1f);
             int rand = Random.Range(0, 100);
 
-            if(rand > 40 && rand < 60)
+            if(rand > 30 && rand < 35)
                 e.GetComponent<Enemy_Health>().drop = healthDrop;
-            else if(rand <= 60 && rand < 75)
+            else if(rand <= 40 && rand < 44)
                 e.GetComponent<Enemy_Health>().drop = speedDrop;
-            else if(rand <= 75 && rand < 85)
+            else if(rand <= 50 && rand < 53)
                 e.GetComponent<Enemy_Health>().drop = shootspeedDrop;
 
         }

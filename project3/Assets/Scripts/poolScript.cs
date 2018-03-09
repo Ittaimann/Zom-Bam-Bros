@@ -16,6 +16,7 @@ public class poolScript : MonoBehaviour {
 		{
 			var child= Instantiate(bullet,transform.position,transform.rotation,transform);
 			child.SetActive(false);
+            child.GetComponent<BulletMovement>().CancelInvoke();
 		}		
 	}
 	

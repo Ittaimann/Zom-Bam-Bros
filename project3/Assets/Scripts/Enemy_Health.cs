@@ -5,6 +5,9 @@ using UnityEngine;
 public class Enemy_Health : MonoBehaviour {
 
     public EnemyScriptable es;
+    private Rigidbody2D rb;
+    [SerializeField]
+    private float knockback;
     public GameObject drop; // on spawn we'll need to set this to some random
                             // prefabof pick up objects
 
@@ -13,6 +16,7 @@ public class Enemy_Health : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        rb = GetComponent<Rigidbody2D>();
         health = es.health;
 	}
 	
@@ -22,6 +26,11 @@ public class Enemy_Health : MonoBehaviour {
         {
             BulletMovement bm = c.GetComponent<BulletMovement>();
             Take_Damage(bm.GetDamage());
+
+
+            float angle = Vector2.Angle(Vector2.right, transform.position - c.transform.position);
+            rb.AddForce(new Vector2(Mathf.Cos(Mathf.Deg2Rad * angle) * bm.GetDamage(), Mathf.Sin(Mathf.Deg2Rad * angle) * bm.GetDamage()) * knockback);
+
             if (bm.piercing-- == 0)
                 bm.ReturnToPool();
         }
@@ -30,6 +39,7 @@ public class Enemy_Health : MonoBehaviour {
     public void Take_Damage(float dam)
     {
         health -= dam;
+
         if (health <= 0)
         {
             es.DecEnemyNumber();

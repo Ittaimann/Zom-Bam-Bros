@@ -153,6 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   es: {fileID: 11400000, guid: 652085d8df1e135499234e21e071f5cb, type: 2}
+  knockback: 500
   drop: {fileID: 0}
 --- !u!212 &212079750373557340
 SpriteRenderer:
