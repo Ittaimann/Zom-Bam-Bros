@@ -378,6 +378,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootAudio: {fileID: 82372813816164928}
+  otherPlayerIndex: 2
   pool: {fileID: 11400000, guid: 032e1ac3e96b1bc4e91369871cf6d99e, type: 2}
   playerInfo: {fileID: 11400000, guid: 988eebf676ee07b4c8f6ab868f7ec979, type: 2}
   speed_max: 20
