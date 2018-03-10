@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        zombieCount.text = "Zombie Count: " + enemies.enemyNumber;
+        zombieCount.text = "Zombies Left: " + enemies.enemyNumber;
 
         if (!player1.isalive && !player1_death_panel.activeSelf)
             player1_death_panel.SetActive(true);
