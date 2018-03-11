@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 114010959268943522}
   - component: {fileID: 114930668176259044}
   - component: {fileID: 61152541039927582}
+  - component: {fileID: 82662115460204270}
   m_Layer: 8
   m_Name: Enemy
   m_TagString: Enemy
@@ -118,6 +119,86 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4, y: 4}
   m_EdgeRadius: 0
+--- !u!82 &82662115460204270
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1317098661352988}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 10
+  MaxDistance: 30
+  Pan2D: 0
+  rolloffMode: 1
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!114 &114010959268943522
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -141,6 +222,16 @@ MonoBehaviour:
   cutoffDistance: 2.5
   hitStrength: 50
   damage: 1
+  randomSounds:
+  - {fileID: 8300000, guid: 2f5abda5b00cd8f4fa2a9c53174a0b84, type: 3}
+  - {fileID: 8300000, guid: 87abecb4a7cd9344ab145230604daa2b, type: 3}
+  - {fileID: 8300000, guid: f2b1d65657c64be4380e44d6227018d3, type: 3}
+  attackSounds:
+  - {fileID: 8300000, guid: 1a991cf058343c94f9d6ab35f7327409, type: 3}
+  - {fileID: 8300000, guid: 58b2ecc3b0eb1b24bb0e99b182875c35, type: 3}
+  - {fileID: 8300000, guid: c2c226101102bea48b7f424b229658f4, type: 3}
+  - {fileID: 8300000, guid: 09cc0faa7c908ac41a328a627de49041, type: 3}
+  maxHearableDistance: 25
 --- !u!114 &114930668176259044
 MonoBehaviour:
   m_ObjectHideFlags: 1

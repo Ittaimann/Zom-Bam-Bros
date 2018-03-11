@@ -8,7 +8,6 @@ public class EnemyScriptable : ScriptableObject {
 	public Transform player1;
 	public Transform player2;
 	public int enemyNumber;
-    public Vector3[,] grid;
 
 	public void DecEnemyNumber()
 	{

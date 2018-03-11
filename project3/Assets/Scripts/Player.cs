@@ -14,6 +14,9 @@ public class Player : MonoBehaviour {
     private AudioSource powerupAudio;
     public AudioSource shootAudio;
 
+
+    public int otherPlayerIndex;
+
     //should get this from the gun
     private float shoot_wait = 1;
     private int bullets_to_shoot = 1;
@@ -216,7 +219,7 @@ public class Player : MonoBehaviour {
         {
             //This is here because it causes error because of the last else if
         }
-        else if (playerInfo.fighting && other.tag != "PlayerBullet" + playerInfo.playerNum)
+        else if (playerInfo.fighting && other.tag == "PlayerBullet" + otherPlayerIndex)
         {
             float damage = other.GetComponent<BulletMovement>().damage;
 

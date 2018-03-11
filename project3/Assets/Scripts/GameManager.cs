@@ -27,9 +27,7 @@ public class GameManager : MonoBehaviour {
     public GameObject speedDrop;
     public GameObject shootspeedDrop;
 
-    [Header("Pathfinding")]
-    public Vector2[] positionsOfObstacles;
-    public int xSize, ySize;
+
 
 	// Use this for initialization
 	void Start () {
@@ -41,29 +39,14 @@ public class GameManager : MonoBehaviour {
         player1.fighting = false;
         player2.fighting = false;
         enemies.enemyNumber = num_enemies;
-        CreateGrid(xSize, ySize);
 		StartCoroutine("enemySpawn");
 
 	}
 
-
-    private void CreateGrid(int sizex, int sizey)
-    {
-        enemies.grid = new Vector3[sizey, sizex];
-        for (int y = 0; y < sizey; ++y)
-        {
-            for (int x = 0; x < sizex; ++x)
-            {
-                //The times 5 accounts for the scaled up tiles
-                enemies.grid[y, x] = new Vector3(x * 5, y * 5, 0);
-            }
-        }
-    }
-
 	
 	// Update is called once per frame
 	void Update () {
-        zombieCount.text = "Zombie Count: " + enemies.enemyNumber;
+        zombieCount.text = "Zombies Left: " + enemies.enemyNumber;
 
         if (!player1.isalive && !player1_death_panel.activeSelf)
             player1_death_panel.SetActive(true);
