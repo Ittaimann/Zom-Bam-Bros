@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: f315615f6be36ed45b82c3c852f297a8
-timeCreated: 1520639402
+timeCreated: 1520795493
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -39,6 +39,7 @@ TextureImporter:
     21300064: zc_32
     21300066: zc_33
     21300068: zc_34
+    21300070: zc_35
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -602,6 +603,20 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 512
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: zc_35
+      rect:
+        serializedVersion: 2
+        x: 768
         y: 0
         width: 256
         height: 256
