@@ -4,14 +4,15 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
-	private bool fighting;
-	public float SpawnTime;
+
+    public float SpawnTime;
     public Text zombieCount;
 
 
     [Header("Enemies")]
 	public GameObject enemy;
     public int num_enemies;
+    public Grid_Creator gc;
 
 	public EnemyScriptable enemies;
 
@@ -31,7 +32,6 @@ public class GameManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        fighting = false;
         enemies.player1 = player1.loc;
         enemies.player2 = player2.loc;
         player1.isalive = true;
@@ -62,11 +62,12 @@ public class GameManager : MonoBehaviour {
         float offset = 0.5f;
 		while(true)
 		{
-            yield return new WaitForSeconds(Random.Range(SpawnTime - offset, SpawnTime + offset));
+            yield return new WaitForSeconds(Random.Range(SpawnTime + offset, SpawnTime + offset));
 			Transform spawn=(transform.GetChild(Random.Range(0,4)));
 
             GameObject e = Instantiate(enemy, spawn);
             e.GetComponent<Enemy_Movement>().maxVelocity += Random.Range(-1f, 1f);
+            e.GetComponent<Enemy_Movement>().gc = gc;
             int rand = Random.Range(0, 100);
 
             if(rand > 30 && rand < 35)

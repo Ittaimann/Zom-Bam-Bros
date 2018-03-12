@@ -28,6 +28,10 @@ public class Node
     {
         return (obj1.x == obj2.x && obj1.y == obj2.y);
     }
+    public Vector2 position()
+    {
+        return new Vector2(x, y);
+    }
 
     public float x;
     public float y;
@@ -180,7 +184,7 @@ public class Grid_Creator : MonoBehaviour {
                 {
 
                     //Checks if index is in bounds of the map and its not on the testing Node (if so then ignore)
-                    if (x < 0 || x >= width || y < 0 || y >= height || (x == x_index && y == y_index))
+                    if (x < 0 || x >= width || y < 0 || y >= height || (x == x_index && y == y_index) || (x != x_index && y != y_index))
                         continue;
 
                     //Checks to see if node being checked is a wall (if so then ignore)

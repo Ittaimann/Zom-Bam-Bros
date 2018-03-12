@@ -1087,6 +1087,48 @@ GameObject:
   m_PrefabParentObject: {fileID: 1492777494872526, guid: 27fbe963642ea5e4298808c4d38193b2,
     type: 2}
   m_PrefabInternal: {fileID: 102141329}
+--- !u!1001 &1106518044
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4426501110599430, guid: baa6d5ac6350e7f4a9e24f1cf869b0c6, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -57.94
+      objectReference: {fileID: 0}
+    - target: {fileID: 4426501110599430, guid: baa6d5ac6350e7f4a9e24f1cf869b0c6, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 62.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 4426501110599430, guid: baa6d5ac6350e7f4a9e24f1cf869b0c6, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4426501110599430, guid: baa6d5ac6350e7f4a9e24f1cf869b0c6, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4426501110599430, guid: baa6d5ac6350e7f4a9e24f1cf869b0c6, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4426501110599430, guid: baa6d5ac6350e7f4a9e24f1cf869b0c6, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4426501110599430, guid: baa6d5ac6350e7f4a9e24f1cf869b0c6, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4426501110599430, guid: baa6d5ac6350e7f4a9e24f1cf869b0c6, type: 2}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: baa6d5ac6350e7f4a9e24f1cf869b0c6, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &1182134091
 Prefab:
   m_ObjectHideFlags: 0
@@ -1369,7 +1411,7 @@ Prefab:
     - target: {fileID: 114768142298072352, guid: 5656e113999538743b35fb460bea7b86,
         type: 2}
       propertyPath: num_enemies
-      value: 0
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 114768142298072352, guid: 5656e113999538743b35fb460bea7b86,
         type: 2}
@@ -1410,6 +1452,11 @@ Prefab:
       propertyPath: zombieCount
       value: 
       objectReference: {fileID: 340983083}
+    - target: {fileID: 114768142298072352, guid: 5656e113999538743b35fb460bea7b86,
+        type: 2}
+      propertyPath: gc
+      value: 
+      objectReference: {fileID: 1987444314}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5656e113999538743b35fb460bea7b86, type: 2}
   m_IsPrefabParent: 0
@@ -20649,46 +20696,9 @@ Tilemap:
     m_DirtyIndex: 0
   - serializedVersion: 1
     m_DirtyIndex: 0
---- !u!1 &1987444311
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1987444313}
-  - component: {fileID: 1987444314}
-  m_Layer: 0
-  m_Name: Pathfinding_Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1987444313
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1987444311}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -57.94, y: 62.04, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1987444314
+--- !u!114 &1987444314 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1987444311}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
+  m_PrefabParentObject: {fileID: 114710613118036450, guid: baa6d5ac6350e7f4a9e24f1cf869b0c6,
+    type: 2}
+  m_PrefabInternal: {fileID: 1106518044}
   m_Script: {fileID: 11500000, guid: 63a4dbbd52076ef47a6c5a2406399887, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  top_left: {x: -72.5, y: 72.5}
-  width: 30
-  height: 100

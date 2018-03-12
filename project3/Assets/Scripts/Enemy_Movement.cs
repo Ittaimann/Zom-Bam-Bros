@@ -11,7 +11,11 @@ public class Enemy_Movement : MonoBehaviour {
 
     public EnemyScriptable enemyinfo;
 
+    [Header("Pathfinding")]
     public LayerMask PlayerSearchLayers;
+    public Grid_Creator gc;
+    private List<Node> path_to_player;
+    private bool resetPath;
 
     [HideInInspector]
     public Transform target;
@@ -34,6 +38,7 @@ public class Enemy_Movement : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        path_to_player = new List<Node>();
         player = enemyinfo.player1;
         player2 = enemyinfo.player2;
         //Debug.LogWarning(player+ " "+ player2);
@@ -48,32 +53,52 @@ public class Enemy_Movement : MonoBehaviour {
         to_target = (player.position - transform.position).magnitude > (player2.position - transform.position).magnitude ? player2 : player;
 
 
-        //RaycastHit2D rh = Physics2D.Raycast(transform.position, (to_target.transform.position - transform.position).normalized, Mathf.Infinity, PlayerSearchLayers);
-        //if (rh.collider)
-        //{
-            //if(rh.collider.tag == "Player")
-            //{
-        rb.velocity /= 1.05f;
+        RaycastHit2D rh = Physics2D.Raycast(transform.position, (to_target.transform.position - transform.position).normalized, Mathf.Infinity, PlayerSearchLayers);
+        if (rh.collider)
+        {
+            if (rh.collider.tag == "Player")
+            {
+                resetPath = true;
+                //If can see player walk right towards them
+                rb.velocity /= 1.05f;
 
-        transform.GetChild(0).rotation = Quaternion.LookRotation(Vector3.forward, to_target.position - transform.position);
+                transform.GetChild(0).rotation = Quaternion.LookRotation(Vector3.forward, to_target.position - transform.position);
 
-        if (rb.velocity.magnitude < maxVelocity)
-            rb.velocity += speed * Time.deltaTime * (Vector2)(to_target.position - transform.position).normalized;
+                if (rb.velocity.magnitude < maxVelocity)
+                    rb.velocity += speed * Time.deltaTime * (Vector2)(to_target.position - transform.position).normalized;
 
-            //}
-            //else
-            //{
-            //    //print("do A* of some sort maybe");
-            //    rb.velocity = Vector2.zero;
-            //}
+            }
+            else
+            {
+                //If can't see player then A* towards them
 
-        //}
-        //else
-        //{
-        //    print("y u no see anything");
-        //}
+                //This is to make it reset the path if it started following the player but may be too many calls
+                if (path_to_player.Count == 0 || resetPath)
+                //if(path_to_player.Count == 0)
+                {
+                    resetPath = false;
+                    path_to_player.Clear();
+                    path_to_player = gc.Get_Path(transform, to_target);
+                }
+                else
+                {
+                    if(((Vector2) transform.position - path_to_player[path_to_player.Count-1].position()).magnitude <= 0.1f)
+                    {
+                        //If he got to the Node then go to next one
+                        path_to_player.RemoveAt(path_to_player.Count-1);
+                    }
 
+                    //Travel to the first Node on the list
+                    //print(path_to_player[path_to_player.Count - 1].position());
+                    rb.velocity /= 1.05f;
+                    transform.GetChild(0).rotation = Quaternion.LookRotation(Vector3.forward,(Vector3) path_to_player[path_to_player.Count - 1].position() - transform.position);
 
+                    if (rb.velocity.magnitude < maxVelocity)
+                        rb.velocity += speed * Time.deltaTime * (path_to_player[path_to_player.Count-1].position() - (Vector2) transform.position).normalized;
+                }
+            }
+
+        }
     }
 
     void OnTriggerStay2D(Collider2D c)
