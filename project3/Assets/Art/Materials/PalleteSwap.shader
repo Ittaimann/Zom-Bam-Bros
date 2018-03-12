@@ -4,7 +4,7 @@ Shader "Hidden/PaletteSwapLookup"
 {
 	Properties
 	{
-		_MainTex ("Texture", 2D) = "white" {}
+		[PerRendererData]_MainTex ("Texture", 2D) = "white" {}
 		_PaletteTex("Texture", 2D) = "white" {}
 	}
 	SubShader
