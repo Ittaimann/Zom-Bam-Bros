@@ -44,6 +44,7 @@ public class MenuManager : MonoBehaviour {
 
     public void Restart()
     {
+        Time.timeScale = 1;
         string scene = SceneManager.GetActiveScene().name;
         LoadLevel(scene);
     }
