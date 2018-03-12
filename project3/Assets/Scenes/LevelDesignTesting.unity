@@ -1087,34 +1087,6 @@ GameObject:
   m_PrefabParentObject: {fileID: 1492777494872526, guid: 27fbe963642ea5e4298808c4d38193b2,
     type: 2}
   m_PrefabInternal: {fileID: 102141329}
---- !u!1 &1164411143
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1164411144}
-  m_Layer: 0
-  m_Name: From
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1164411144
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1164411143}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -54.8, y: 33.2, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 11
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1182134091
 Prefab:
   m_ObjectHideFlags: 0
@@ -4152,34 +4124,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 693873577}
   m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1697628882
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1697628883}
-  m_Layer: 0
-  m_Name: To
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1697628883
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1697628882}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -27.8, y: 67.3, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1713861073
 GameObject:
@@ -20746,9 +20690,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   top_left: {x: -72.5, y: 72.5}
-  width: 29
-  height: 30
-  f: {fileID: 1164411144}
-  t: {fileID: 1697628883}
-  visibleNodes: {fileID: 1302271708407238, guid: 758c632a3b0c6a14d858702a07662fcd,
-    type: 2}
+  width: 30
+  height: 100
