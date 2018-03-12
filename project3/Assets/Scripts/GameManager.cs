@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour {
 		while(true)
 		{
             yield return new WaitForSeconds(Random.Range(SpawnTime + offset, SpawnTime + offset));
-			Transform spawn=(transform.GetChild(Random.Range(0,4)));
+			Transform spawn=(transform.GetChild(Random.Range(0,6)));
 
             GameObject e = Instantiate(enemy, spawn);
             e.GetComponent<Enemy_Movement>().maxVelocity += Random.Range(-1f, 1f);
