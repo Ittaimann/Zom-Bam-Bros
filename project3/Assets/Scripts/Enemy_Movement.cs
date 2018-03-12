@@ -68,35 +68,35 @@ public class Enemy_Movement : MonoBehaviour {
                     rb.velocity += speed * Time.deltaTime * (Vector2)(to_target.position - transform.position).normalized;
 
             }
-            else
-            {
-                //If can't see player then A* towards them
+            //else
+            //{
+            //    //If can't see player then A* towards them
 
-                //This is to make it reset the path if it started following the player but may be too many calls
-                if (path_to_player.Count == 0 || resetPath)
-                //if(path_to_player.Count == 0)
-                {
-                    resetPath = false;
-                    path_to_player.Clear();
-                    path_to_player = gc.Get_Path(transform, to_target);
-                }
-                else
-                {
-                    if(((Vector2) transform.position - path_to_player[path_to_player.Count-1].position()).magnitude <= 0.1f)
-                    {
-                        //If he got to the Node then go to next one
-                        path_to_player.RemoveAt(path_to_player.Count-1);
-                    }
+            //    //This is to make it reset the path if it started following the player but may be too many calls
+            //    if (path_to_player.Count == 0 || resetPath)
+            //    //if(path_to_player.Count == 0)
+            //    {
+            //        resetPath = false;
+            //        path_to_player.Clear();
+            //        path_to_player = gc.Get_Path(transform, to_target);
+            //    }
+            //    else
+            //    {
+            //        if(((Vector2) transform.position - path_to_player[path_to_player.Count-1].position()).magnitude <= 0.1f)
+            //        {
+            //            //If he got to the Node then go to next one
+            //            path_to_player.RemoveAt(path_to_player.Count-1);
+            //        }
 
-                    //Travel to the first Node on the list
-                    //print(path_to_player[path_to_player.Count - 1].position());
-                    rb.velocity /= 1.05f;
-                    transform.GetChild(0).rotation = Quaternion.LookRotation(Vector3.forward,(Vector3) path_to_player[path_to_player.Count - 1].position() - transform.position);
+            //        //Travel to the first Node on the list
+            //        //print(path_to_player[path_to_player.Count - 1].position());
+            //        rb.velocity /= 1.05f;
+            //        transform.GetChild(0).rotation = Quaternion.LookRotation(Vector3.forward,(Vector3) path_to_player[path_to_player.Count - 1].position() - transform.position);
 
-                    if (rb.velocity.magnitude < maxVelocity)
-                        rb.velocity += speed * Time.deltaTime * (path_to_player[path_to_player.Count-1].position() - (Vector2) transform.position).normalized;
-                }
-            }
+            //        if (rb.velocity.magnitude < maxVelocity)
+            //            rb.velocity += speed * Time.deltaTime * (path_to_player[path_to_player.Count-1].position() - (Vector2) transform.position).normalized;
+            //    }
+            //}
 
         }
     }

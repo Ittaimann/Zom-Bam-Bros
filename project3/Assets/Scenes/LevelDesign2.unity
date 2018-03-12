@@ -760,6 +760,21 @@ Prefab:
       propertyPath: optionsMenu
       value: 
       objectReference: {fileID: 773983568}
+    - target: {fileID: 114365216041862182, guid: 82ee15d68bc312440a4ea2880a24ac74,
+        type: 2}
+      propertyPath: pauseSystem
+      value: 
+      objectReference: {fileID: 995147390}
+    - target: {fileID: 114365216041862182, guid: 82ee15d68bc312440a4ea2880a24ac74,
+        type: 2}
+      propertyPath: controlSystem
+      value: 
+      objectReference: {fileID: 1078017628}
+    - target: {fileID: 114365216041862182, guid: 82ee15d68bc312440a4ea2880a24ac74,
+        type: 2}
+      propertyPath: optionSystem
+      value: 
+      objectReference: {fileID: 2040657704}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 82ee15d68bc312440a4ea2880a24ac74, type: 2}
   m_IsPrefabParent: 0
@@ -2569,6 +2584,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 213285445}
+        m_MethodName: UnloadSystem
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2040657704}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.EventSystems.EventSystem,
+            UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 213285445}
+        m_MethodName: LoadSystem
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 995147390}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.EventSystems.EventSystem,
+            UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1024398145
@@ -2762,6 +2801,68 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1056950053}
+--- !u!1 &1078017626
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1078017629}
+  - component: {fileID: 1078017628}
+  - component: {fileID: 1078017627}
+  m_Layer: 0
+  m_Name: EventSystemControls
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &1078017627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1078017626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1077351063, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalAxis: Horizontal
+  m_VerticalAxis: Vertical
+  m_SubmitButton: Submit
+  m_CancelButton: Cancel
+  m_InputActionsPerSecond: 10
+  m_RepeatDelay: 0.5
+  m_ForceModuleActive: 0
+--- !u!114 &1078017628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1078017626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -619905303, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FirstSelected: {fileID: 1256890330}
+  m_sendNavigationEvents: 1
+  m_DragThreshold: 5
+--- !u!4 &1078017629
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1078017626}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1078882277
 GameObject:
   m_ObjectHideFlags: 0
@@ -3251,6 +3352,30 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 2139678255}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 213285445}
+        m_MethodName: UnloadSystem
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1078017628}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.EventSystems.EventSystem,
+            UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 213285445}
+        m_MethodName: LoadSystem
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 995147390}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.EventSystems.EventSystem,
+            UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -10524,6 +10649,30 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 2139678255}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 213285445}
+        m_MethodName: LoadSystem
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1078017628}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.EventSystems.EventSystem,
+            UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 213285445}
+        m_MethodName: UnloadSystem
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 995147390}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.EventSystems.EventSystem,
+            UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -60281,6 +60430,68 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &2040657702
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 2040657705}
+  - component: {fileID: 2040657704}
+  - component: {fileID: 2040657703}
+  m_Layer: 0
+  m_Name: EventSystemOptions
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &2040657703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2040657702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1077351063, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalAxis: Horizontal
+  m_VerticalAxis: Vertical
+  m_SubmitButton: Submit
+  m_CancelButton: Cancel
+  m_InputActionsPerSecond: 10
+  m_RepeatDelay: 0.5
+  m_ForceModuleActive: 0
+--- !u!114 &2040657704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2040657702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -619905303, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FirstSelected: {fileID: 1024398142}
+  m_sendNavigationEvents: 1
+  m_DragThreshold: 5
+--- !u!4 &2040657705
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2040657702}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2139678255
 GameObject:
   m_ObjectHideFlags: 0
@@ -60420,6 +60631,30 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 2139678255}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 213285445}
+        m_MethodName: LoadSystem
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2040657704}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.EventSystems.EventSystem,
+            UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 213285445}
+        m_MethodName: UnloadSystem
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 995147390}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.EventSystems.EventSystem,
+            UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

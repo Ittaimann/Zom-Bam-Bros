@@ -8,6 +8,9 @@ public class MenuManager : MonoBehaviour {
     public GameObject pauseMenu;
     public GameObject controlsMenu;
     public GameObject optionsMenu;
+    public UnityEngine.EventSystems.EventSystem pauseSystem;
+    public UnityEngine.EventSystems.EventSystem controlSystem;
+    public UnityEngine.EventSystems.EventSystem optionSystem;
 
     private bool isPaused;
 
@@ -53,6 +56,7 @@ public class MenuManager : MonoBehaviour {
     {
         isPaused = true;
         Time.timeScale = 0;
+        LoadSystem(pauseSystem);
         LoadMenu(pauseMenu);
     }
 
@@ -78,5 +82,18 @@ public class MenuManager : MonoBehaviour {
         UnloadMenu(pauseMenu);
         UnloadMenu(controlsMenu);
         UnloadMenu(optionsMenu);
+        UnloadSystem(pauseSystem);
+        UnloadSystem(controlSystem);
+        UnloadSystem(optionSystem);
+    }
+
+    public void LoadSystem(UnityEngine.EventSystems.EventSystem system)
+    {
+        system.gameObject.SetActive(true);
+    }
+
+    public void UnloadSystem(UnityEngine.EventSystems.EventSystem system)
+    {
+        system.gameObject.SetActive(false);
     }
 }
