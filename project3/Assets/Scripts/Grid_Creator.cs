@@ -130,6 +130,15 @@ public class Grid_Creator : MonoBehaviour {
         {
             print(GetClosestNode(f).x + " " + GetClosestNode(f).y);
         }
+        
+        if(Input.GetKeyDown(KeyCode.I))
+        {
+            Node n = new Node(1, 1);
+            closed.Add(n);
+            print(closed.Contains(new Node(1, 1, 1)));
+            n.f = 5;
+            print(closed[0].f);
+        }
     }
 
     //********************************************************Creating the Paths*****************************************************************
@@ -179,6 +188,8 @@ public class Grid_Creator : MonoBehaviour {
             Node testing = open.Values[0];
             open.RemoveAt(0);
 
+            testing.f = 0;
+            testing.g = 0;
             //Add this node to the closed list since we visited it
             closed.Add(testing);
 
@@ -210,7 +221,13 @@ public class Grid_Creator : MonoBehaviour {
 
 
                     //Check to see if the Node is already on the closed list (meanings its already been explored)
-                    if (closed.Contains(grid[x, y]))
+                    bool skip = false;
+                    foreach(Node n in closed)
+                    {
+                        if (Node.samePosition(n, grid[x, y]))
+                            skip = true;
+                    }
+                    if (skip)
                         continue;
 
                     //Set the Path cost to 1 plus the path cost of the current Node
@@ -218,6 +235,7 @@ public class Grid_Creator : MonoBehaviour {
 
                     //Calculate the new F value of the Node as the G + H values (the h is the heaurstic of this node's distance to the goal)
                     grid[x, y].f = Calculate_Manhattan(x, y, toNode_x, toNode_y) + grid[x, y].g;
+                    //print(x + " " + y + " " + grid[x, y].f);
 
                     //Check to see if the Node is already on the open list and if it is to see if the one on the open list is cheaper to get to (if so then ignore this one)
                     if (open.ContainsValue(grid[x, y]))
@@ -229,6 +247,7 @@ public class Grid_Creator : MonoBehaviour {
                         {
                             open.Values[index].f = grid[x, y].f;
                             open.Values[index].g = grid[x, y].g;
+                            open.Values[index].parent = testing;
                             continue;
                         }
                     }

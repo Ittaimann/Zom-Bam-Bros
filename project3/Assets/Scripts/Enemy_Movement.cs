@@ -60,7 +60,8 @@ public class Enemy_Movement : MonoBehaviour {
         {
             if (rh.collider.tag == "Player" || ((Vector2)to_target.position - lastKnown).magnitude < 5)
             {
-                lastKnown = rh.collider.gameObject.transform.position;
+                if(((Vector2)to_target.position - lastKnown).magnitude > 5)
+                    lastKnown = rh.collider.gameObject.transform.position;
                 resetPath = true;
                 settingPath = false;
                 //If can see player walk right towards them
