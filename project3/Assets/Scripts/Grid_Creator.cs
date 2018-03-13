@@ -194,7 +194,7 @@ public class Grid_Creator : MonoBehaviour {
             Node testing = open.Values[0];
             open.RemoveAt(0);
 
-            Instantiate(visibleNodes, testing.position(), Quaternion.identity);
+            //Instantiate(visibleNodes, testing.position(), Quaternion.identity);
             //Add this node to the closed list since we visited it
             closed.Add(testing);
 
