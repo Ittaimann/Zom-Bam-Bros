@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: zombiePallete4
+  m_Name: zombiePallete5
   m_Shader: {fileID: 4800000, guid: d1021984fe7235a4089d187f3d4c2fa0, type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
   m_LightmapFlags: 4
