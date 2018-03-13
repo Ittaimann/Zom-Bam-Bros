@@ -7,10 +7,10 @@ public class MenuManager : MonoBehaviour {
 
     public GameObject pauseMenu;
     public GameObject controlsMenu;
-    public GameObject optionsMenu;
+    //public GameObject optionsMenu;
     public UnityEngine.EventSystems.EventSystem pauseSystem;
     public UnityEngine.EventSystems.EventSystem controlSystem;
-    public UnityEngine.EventSystems.EventSystem optionSystem;
+    //public UnityEngine.EventSystems.EventSystem optionSystem;
 
     private bool isPaused;
 
@@ -81,10 +81,10 @@ public class MenuManager : MonoBehaviour {
     {
         UnloadMenu(pauseMenu);
         UnloadMenu(controlsMenu);
-        UnloadMenu(optionsMenu);
+        //UnloadMenu(optionsMenu);
         UnloadSystem(pauseSystem);
         UnloadSystem(controlSystem);
-        UnloadSystem(optionSystem);
+        //UnloadSystem(optionSystem);
     }
 
     public void LoadSystem(UnityEngine.EventSystems.EventSystem system)
