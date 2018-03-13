@@ -7,6 +7,14 @@ public class dumbsprites
 {
 	public Sprite T1;
 	public Sprite T2;
+
+
+	public Sprite getT1()
+	{return T1;}
+
+
+    public Sprite getT2()
+    { return T2; }
 }
 
 

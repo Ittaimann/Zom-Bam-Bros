@@ -9,8 +9,10 @@ Shader "Hidden/PaletteSwapLookup"
 	}
 	SubShader
 	{
-		Cull Off ZWrite Off ZTest Always
+		Tags{"Queue" = "Transparent"}
 
+		ZTest off
+		Blend SrcAlpha OneMinusSrcAlpha
 		Pass
 		{
 			CGPROGRAM

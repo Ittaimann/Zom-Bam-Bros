@@ -10,7 +10,7 @@ public class Enemy_Health : MonoBehaviour {
     private float knockback;
     public GameObject drop; // on spawn we'll need to set this to some random
                             // prefabof pick up objects
-
+    dumbsprites stateSprites;
 
     private float health;
 
@@ -18,7 +18,14 @@ public class Enemy_Health : MonoBehaviour {
 	void Start () {
         rb = GetComponent<Rigidbody2D>();
         health = es.health;
-	}
+        
+        stateSprites=es.states[Random.Range(0,5)];
+        Material pallate = es.palletes[Random.Range(0, 5)];
+        GetComponentInChildren<SpriteRenderer>().sprite=stateSprites.T1;
+        GetComponentInChildren<SpriteRenderer>().material = pallate;
+
+
+    }
 	
 	void OnTriggerEnter2D(Collider2D c)
     {
@@ -40,6 +47,11 @@ public class Enemy_Health : MonoBehaviour {
     {
         health -= dam;
 
+        //damage sprite change        
+        if(health==1)
+        {
+            GetComponentInChildren<SpriteRenderer>().sprite = stateSprites.T2;
+        }
         if (health <= 0)
         {
             es.DecEnemyNumber();
