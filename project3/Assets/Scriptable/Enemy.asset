@@ -15,3 +15,20 @@ MonoBehaviour:
   player1: {fileID: 0}
   player2: {fileID: 0}
   enemyNumber: 0
+  palletes:
+  - {fileID: 2100000, guid: 01da90e010f33a540a8f5dfd18cb2b60, type: 2}
+  - {fileID: 2100000, guid: c5d3b81a73b13764fad0a8f42d0364a8, type: 2}
+  - {fileID: 2100000, guid: a3e272f621e017b4f977611fcaf814e2, type: 2}
+  - {fileID: 2100000, guid: 13dce289ae0dfe145894c6a93c8272b9, type: 2}
+  - {fileID: 2100000, guid: e82d64b9893d1ed4a8cce63831b158d5, type: 2}
+  states:
+  - T1: {fileID: 21300000, guid: 3992ee1c3c290674ba59c6f5f08af5f8, type: 3}
+    T2: {fileID: 21300000, guid: c897bde98e789f048b826893359fdb4a, type: 3}
+  - T1: {fileID: 21300000, guid: 834c067da19ab2d4a96df2ac2038f9e4, type: 3}
+    T2: {fileID: 21300000, guid: 6d62bd4b4e1f33d44ba5fd0bcdf73808, type: 3}
+  - T1: {fileID: 21300000, guid: 26b0e8cbe4bb15344a6212b78b23b354, type: 3}
+    T2: {fileID: 21300000, guid: afdc757cbc613114196ad7d5f539d5e5, type: 3}
+  - T1: {fileID: 21300000, guid: c567e4b7059bc84458c16a4c370c84a0, type: 3}
+    T2: {fileID: 21300000, guid: c567e4b7059bc84458c16a4c370c84a0, type: 3}
+  - T1: {fileID: 21300000, guid: 32e6f80e6eb44074db544ffb5637c5c4, type: 3}
+    T2: {fileID: 21300000, guid: 99b8e801ffaea9e4a84333eead11552f, type: 3}

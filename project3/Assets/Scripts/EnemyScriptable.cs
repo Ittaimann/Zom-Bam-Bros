@@ -2,12 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class dumbsprites
+{
+	public Sprite T1;
+	public Sprite T2;
+}
+
+
+
 [CreateAssetMenu(fileName = "Enemy", menuName = "enemy")]
 public class EnemyScriptable : ScriptableObject {
 	public int health;
 	public Transform player1;
 	public Transform player2;
 	public int enemyNumber;
+	public List<Material> palletes;
+	public List <dumbsprites> states;
 
 	public void DecEnemyNumber()
 	{
