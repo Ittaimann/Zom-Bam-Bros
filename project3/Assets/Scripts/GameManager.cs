@@ -70,11 +70,11 @@ public class GameManager : MonoBehaviour {
             e.GetComponent<Enemy_Movement>().gc = gc;
             int rand = Random.Range(0, 100);
 
-            if(rand > 30 && rand < 35)
+            if(rand > 25 && rand < 35)
                 e.GetComponent<Enemy_Health>().drop = healthDrop;
-            else if(rand >= 40 && rand < 44)
+            else if(rand >= 40 && rand < 45)
                 e.GetComponent<Enemy_Health>().drop = speedDrop;
-            else if(rand >= 50 && rand < 53)
+            else if(rand >= 50 && rand < 55)
                 e.GetComponent<Enemy_Health>().drop = shootspeedDrop;
 
             if(canFight())
