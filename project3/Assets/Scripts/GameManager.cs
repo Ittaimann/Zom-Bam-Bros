@@ -60,11 +60,10 @@ public class GameManager : MonoBehaviour {
 	IEnumerator enemySpawn()
 	{
         float offset = 0.5f;
-		while(num_enemies > 0)
+		while(true)
 		{
-            num_enemies--;
             yield return new WaitForSeconds(Random.Range(SpawnTime + offset, SpawnTime + offset));
-			Transform spawn=(transform.GetChild(Random.Range(0,6)));
+            Transform spawn=(transform.GetChild(Random.Range(0,6)));
 
             GameObject e = Instantiate(enemy, spawn);
             e.GetComponent<Enemy_Movement>().maxVelocity += Random.Range(-1f, 1f);

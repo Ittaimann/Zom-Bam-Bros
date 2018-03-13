@@ -60,7 +60,6 @@ public class Enemy_Movement : MonoBehaviour {
         {
             if (rh.collider.tag == "Player" || ((Vector2)to_target.position - lastKnown).magnitude < 5)
             {
-                print("saw player " + transform.position.x + " " + transform.position.y);
                 lastKnown = rh.collider.gameObject.transform.position;
                 resetPath = true;
                 settingPath = false;
@@ -104,6 +103,7 @@ public class Enemy_Movement : MonoBehaviour {
                     if (rb.velocity.magnitude < maxVelocity)
                         rb.velocity += speed * Time.deltaTime * (nodePos - (Vector2)transform.position).normalized;
                 }
+               // print(path_to_player.Count);
             }
 
         }

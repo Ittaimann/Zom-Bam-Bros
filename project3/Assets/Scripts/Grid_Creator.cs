@@ -89,8 +89,10 @@ public class Grid_Creator : MonoBehaviour {
                 rh = Physics2D.Raycast(new Vector2(top_left.x + (x * 5), top_left.y - (y * 5)), Vector2.zero);
                 if(rh.collider)
                 {
-                    //print("hit at " + x + " " + y);
-                    grid[x, y].f = -1;
+                    if(rh.collider.tag == "Walls")
+                        grid[x, y].f = -1;
+                    else if(seeNodes)
+                        Instantiate(visibleNodes, new Vector2(top_left.x + (x * 5), top_left.y - (y * 5)), Quaternion.identity);
                 }
                 else if(seeNodes)
                     Instantiate(visibleNodes, new Vector2(top_left.x + (x * 5), top_left.y - (y * 5)), Quaternion.identity);
@@ -138,9 +140,12 @@ public class Grid_Creator : MonoBehaviour {
         List<Node> path = new List<Node>();
 
         Node curNode = Create_Path(from, to);
-
-        while(curNode.parent != null)
+        int max_count = 0;
+        while(curNode.parent != null && max_count < 100)
         {
+            max_count++;
+            if (max_count == 100)
+                print("maxed out");
             path.Add(curNode);
             curNode = curNode.parent;
         }
@@ -189,7 +194,7 @@ public class Grid_Creator : MonoBehaviour {
                 {
 
                     //Checks if index is in bounds of the map and its not on the testing Node (if so then ignore)
-                    if (x < 0 || x >= width || y < 0 || y >= height || (x == x_index && y == y_index) || (x != x_index && y != y_index))
+                    if (x < 0 || x >= width || y < 0 || y >= height || (x == x_index && y == y_index))
                         continue;
 
                     //Checks to see if node being checked is a wall (if so then ignore)
