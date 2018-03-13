@@ -83,17 +83,11 @@ public class Enemy_Movement : MonoBehaviour {
                     resetPath = false;
                     path_to_player.Clear();
                     path_to_player = gc.Get_Path(transform, to_target);
-                    print("getting path");
                     settingPath = true;
                 }
                 else if (path_to_player.Count > 0)
                 {
                     settingPath = false;
-                    if (((Vector2)transform.position - path_to_player[path_to_player.Count - 1].position()).magnitude <= 0.25f)
-                    {
-                        //If he got to the Node then go to next one
-                        path_to_player.RemoveAt(path_to_player.Count - 1);
-                    }
 
                     Vector2 nodePos = path_to_player[path_to_player.Count - 1].position();
 
@@ -103,6 +97,12 @@ public class Enemy_Movement : MonoBehaviour {
 
                     if (rb.velocity.magnitude < maxVelocity)
                         rb.velocity += speed * Time.deltaTime * (nodePos - (Vector2)transform.position).normalized;
+
+                    if (((Vector2)transform.position - path_to_player[path_to_player.Count - 1].position()).magnitude <= 0.25f)
+                    {
+                        //If he got to the Node then go to next one
+                        path_to_player.RemoveAt(path_to_player.Count - 1);
+                    }
                 }
                // print(path_to_player.Count);
             }

@@ -60,10 +60,8 @@ public class GameManager : MonoBehaviour {
 	IEnumerator enemySpawn()
 	{
         float offset = 0.5f;
-        int s = 1;
-		while(s > 0)
+		while(true)
 		{
-            s--;
             yield return new WaitForSeconds(Random.Range(SpawnTime + offset, SpawnTime + offset));
             Transform spawn=(transform.GetChild(Random.Range(0,6)));
 

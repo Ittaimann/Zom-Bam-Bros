@@ -25,8 +25,8 @@ public class Node
 
     public float x;
     public float y;
-    public int g;
-    public int f;
+    public float g;
+    public float f;
     public Node parent;
 }
 
@@ -70,7 +70,7 @@ public class Grid_Creator : MonoBehaviour {
 
 
 
-    SortedList<int, Node> open = new SortedList<int, Node>(new DuplicateKeyComparer<int>());
+    SortedList<float, Node> open = new SortedList<float, Node>(new DuplicateKeyComparer<float>());
     List<Node> closed = new List<Node>();
 
     //***************************************************************Setting up the Grid*************************************************************
@@ -178,6 +178,12 @@ public class Grid_Creator : MonoBehaviour {
         open.Clear();
         closed.Clear();
 
+        //Resetting any values that may have been left over from previous runs
+        fromNode.f = 0;
+        fromNode.g = 0;
+        fromNode.parent = null;
+        toNode.parent = null;
+
         //Get the first Node (the start node)
         open.Add(fromNode.f, fromNode);
 
@@ -188,8 +194,7 @@ public class Grid_Creator : MonoBehaviour {
             Node testing = open.Values[0];
             open.RemoveAt(0);
 
-            testing.f = 0;
-            testing.g = 0;
+            Instantiate(visibleNodes, testing.position(), Quaternion.identity);
             //Add this node to the closed list since we visited it
             closed.Add(testing);
 
@@ -230,8 +235,8 @@ public class Grid_Creator : MonoBehaviour {
                     if (skip)
                         continue;
 
-                    //Set the Path cost to 1 plus the path cost of the current Node
-                    grid[x, y].g = testing.g + 1;
+                    //Set the Path cost to 1 plus the path cost of the current Node                        
+                    grid[x, y].g = x != x_index && y != y_index ? testing.g + 1.4f : testing.g + 1;
 
                     //Calculate the new F value of the Node as the G + H values (the h is the heaurstic of this node's distance to the goal)
                     grid[x, y].f = Calculate_Manhattan(x, y, toNode_x, toNode_y) + grid[x, y].g;
@@ -268,7 +273,7 @@ public class Grid_Creator : MonoBehaviour {
     private int Calculate_Manhattan(int x_pos, int y_pos, int target_x, int target_y)
     {
         //Calculates the Manhattan distance (difference in x plus the difference in y)
-        return Mathf.Abs(x_pos + target_x) + Mathf.Abs(y_pos + target_y);
+        return Mathf.Abs(x_pos - target_x) + Mathf.Abs(y_pos - target_y);
     }
 
     private Node GetClosestNode(Transform pos)
