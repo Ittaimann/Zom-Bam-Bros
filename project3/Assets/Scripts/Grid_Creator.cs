@@ -14,16 +14,6 @@ public class Node
         parent = null;
     }
 
-    //public static bool operator ==(Node obj1, Node obj2)
-    //{
-        
-    //    return (obj1.x == obj2.x && obj1.y == obj2.y);
-    //}
-    //public static bool operator !=(Node obj1, Node obj2)
-    //{
-    //    return !(obj1.x == obj2.x && obj1.y == obj2.y);
-    //}
-
     public static bool samePosition(Node obj1, Node obj2)
     {
         return (obj1.x == obj2.x && obj1.y == obj2.y);
@@ -71,9 +61,13 @@ public class Grid_Creator : MonoBehaviour {
     public Vector2 top_left;
     public int width, height;
     private Node[,] grid;
-    //public Transform f, t;
+    public Transform f, t;
 
-    //public GameObject visibleNodes;
+    public GameObject visibleNodes;
+
+
+    SortedList<int, Node> open = new SortedList<int, Node>(new DuplicateKeyComparer<int>());
+    List<Node> closed = new List<Node>();
 
     //***************************************************************Setting up the Grid*************************************************************
 
@@ -111,19 +105,19 @@ public class Grid_Creator : MonoBehaviour {
         }
     }
 
-    //void Update()
-    //{
-    //    if(Input.GetKeyDown(KeyCode.G))
-    //    {
-    //        List<Node> path = Get_Path(f, t);
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            List<Node> path = Get_Path(f, t);
 
-    //        for (int i = 0; i < path.Count; ++i)
-    //        {
-    //            print(path[i].x + " " + path[i].y);
-    //            Instantiate(visibleNodes, new Vector3(path[i].x, path[i].y, 0), Quaternion.identity);
-    //        }
-    //    }
-    //}
+            for (int i = 0; i < path.Count; ++i)
+            {
+                print(path[i].x + " " + path[i].y);
+                Instantiate(visibleNodes, new Vector3(path[i].x, path[i].y, 0), Quaternion.identity);
+            }
+        }
+    }
 
     //********************************************************Creating the Paths*****************************************************************
 
@@ -156,8 +150,8 @@ public class Grid_Creator : MonoBehaviour {
 
         //The Open list is the nodes to be searched and the closed list are nodes that have already been explored
         //Acts as a priority queue, using the f values of the node as the key and the Node as the value
-        SortedList<int, Node> open = new SortedList<int, Node>(new DuplicateKeyComparer<int>());
-        List<Node> closed = new List<Node>();
+        open.Clear();
+        closed.Clear();
 
         //Get the first Node (the start node)
         open.Add(fromNode.f, fromNode);
@@ -203,8 +197,8 @@ public class Grid_Creator : MonoBehaviour {
                     if (closed.Contains(grid[x, y]))
                         continue;
 
-                    //Set the Path cost to 10 plus the path cost of the current Node
-                    grid[x, y].g = testing.g + 10;
+                    //Set the Path cost to 1 plus the path cost of the current Node
+                    grid[x, y].g = testing.g + 1;
 
                     //Calculate the new F value of the Node as the G + H values (the h is the heaurstic of this node's distance to the goal)
                     grid[x, y].f = Calculate_Manhattan(x, y, toNode_x, toNode_y) + grid[x, y].g;
@@ -248,4 +242,176 @@ public class Grid_Creator : MonoBehaviour {
         return grid[(int) Mathf.Round((pos.position.x - top_left.x) / 5f), (int) Mathf.Round((top_left.y - pos.position.y) / 5f)];
     }
 
+
+    //**********************************************************Jump Point Search Pruning**************************************************************
+
+    void identifySuccessors(Node current, Node start, Node end) {
+        //This function finds all the successor of the Node by jumping past uninteresting Nodes
+
+        int x_index = (int)Mathf.Round((current.x - top_left.x) / 5f);
+        int y_index = (int)Mathf.Round((top_left.y - current.y) / 5f);
+
+        //Loop through all adjacent nodes
+        for (int x = x_index - 1; x < x_index + 2; ++x)
+        {
+            for (int y = y_index - 1; y < y_index + 2; ++y)
+            {
+                // Direction from current node to neighbor:
+                int dx = x_index - x;
+                int dy = y_index - y;
+
+                // Try to find a node to jump to:
+                Node jumpPoint = jump(x_index, y_index, dx, dy, start, end);
+
+
+                // If found add it to the list:
+                if (jumpPoint != null)
+                    open.Add(jumpPoint.f, jumpPoint);
+            }
+        }
+    }
+
+
+    Node jump(int x_pos, int y_pos, int dx, int dy, Node start, Node end) {
+        //This function returns a Node after trying to go in one direction as far as it can go (if it hits a wall or if it hits a forced neighbor)
+ 
+        // Position of new node we are going to consider:
+        int nextX = x_pos + dx;
+        int nextY = y_pos + dy;
+
+        // If the position is outside the map then stop
+        if (nextX < 0 || nextY < 0 || nextX >= width || nextY >= height)
+            return null;
+    
+        // If it's blocked we can't jump here
+        if (grid[nextX, nextY].f == -1) return null;
+ 
+        // If the node is the goal return it
+        if (grid[nextX, nextY] == end) return grid[nextX, nextY];
+
+        // Diagonal Case   
+        if (dx != 0 && dy != 0)
+        {
+            if (Diagonal_Forced_Neighbor(nextX, nextY, dx, dy))
+            {
+                return grid[nextX, nextY];
+            }
+
+            // Check in horizontal and vertical directions for forced neighbors
+            // This is a special case for diagonal direction
+            if (jump(nextX, nextY, dx, 0, start, end) != null ||
+                jump(nextX, nextY, 0, dy, start, end) != null)
+            {
+                return grid[nextX, nextY];
+            }
+        }
+        else
+        {
+            if (dx != 0)
+            {
+                // Horizontal case
+                if (Horiz_Forced_Neighbor(nextX, nextY, dx))
+                    return grid[nextX, nextY];
+            }
+            else if (dy != 0)
+            {
+                /// Vertical case
+                if (Vert_Forced_Neighbor(nextX, nextY, dy))
+                    return grid[nextX, nextY];
+            }
+
+        }
+
+
+
+        /// If forced neighbor was not found try next jump point
+        return jump(nextX, nextY, dx, dy, start, end);
+    }
+
+
+    private bool Horiz_Forced_Neighbor(int x_pos, int y_pos, int dx)
+    {
+        //This function check to see if any forced neighbors need to be set for jump points
+
+        //dx is +1 for right and -1 for left
+
+        bool foundNeighbor = false;
+        if (grid[x_pos + dx, y_pos].f != -1)
+        {
+            if(grid[x_pos, y_pos+1].f == -1)
+            {
+                //Wall Underneath
+                open.Add(grid[x_pos + dx, y_pos + 1].f, grid[x_pos + dx, y_pos + 1]);
+                foundNeighbor = true;
+            }
+            if(grid[x_pos, y_pos-1].f == -1)
+            {
+                //Wall Above
+                open.Add(grid[x_pos + dx, y_pos - 1].f, grid[x_pos + dx, y_pos - 1]);
+                foundNeighbor = true;
+            }
+        }
+        return foundNeighbor;
+    }
+
+    private bool Vert_Forced_Neighbor(int x_pos, int y_pos, int dy)
+    {
+        //This function check to see if any forced neighbors need to be set for jump points
+
+        //dy is +1 for up and -1 for down
+        bool foundNeighbor = false;
+        if (grid[x_pos, y_pos + dy].f != -1)
+        {
+            if (grid[x_pos + 1, y_pos].f == -1)
+            {
+                //Wall to the Right
+                open.Add(grid[x_pos + 1, y_pos + dy].f, grid[x_pos + 1, y_pos + dy]);
+                foundNeighbor = true;
+            }
+            if (grid[x_pos - 1, y_pos].f == -1)
+            {
+                //Wall to the Left
+                open.Add(grid[x_pos - 1, y_pos + dy].f, grid[x_pos - 1, y_pos + dy]);
+                foundNeighbor = true;
+            }
+        }
+
+        return foundNeighbor;
+    }
+
+    private bool Diagonal_Forced_Neighbor(int x_pos, int y_pos, int dx, int dy)
+    {
+        //This function checks to see if any forced neighbors need to be set for jump points
+        bool foundNeighbor = false;
+
+        if(dx > 0)
+        {
+            if(dy > 0)
+            {
+                //Path goind to upper right
+                if (grid[x_pos, y_pos - 1].f == -1)
+                    open.Add(grid[x_pos + 1, y_pos + 1].f, grid[x_pos + 1, y_pos + 1]);
+                else if (grid[x_pos + 1, y_pos].f == -1)
+                    open.Add(grid[x_pos + 1, y_pos + 1].f, grid[x_pos + 1, y_pos + 1]);
+            }
+            else
+            {
+                //Path going to lower right 
+            }
+        }
+        else
+        {
+            if(dy > 0)
+            {
+                //Path going to upper left
+            }
+            else
+            {
+                //Path going to lower left
+            }
+        }
+
+
+        return foundNeighbor;
+    }
 }
