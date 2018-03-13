@@ -61,9 +61,13 @@ public class Grid_Creator : MonoBehaviour {
     public Vector2 top_left;
     public int width, height;
     private Node[,] grid;
+
+    [Header("Testing")]
+    public GameObject visibleNodes;
+    public bool seeNodes;
     public Transform f, t;
 
-    public GameObject visibleNodes;
+
 
 
     SortedList<int, Node> open = new SortedList<int, Node>(new DuplicateKeyComparer<int>());
@@ -88,6 +92,8 @@ public class Grid_Creator : MonoBehaviour {
                     //print("hit at " + x + " " + y);
                     grid[x, y].f = -1;
                 }
+                else if(seeNodes)
+                    Instantiate(visibleNodes, new Vector2(top_left.x + (x * 5), top_left.y - (y * 5)), Quaternion.identity);
             }
         }
     }
@@ -116,6 +122,11 @@ public class Grid_Creator : MonoBehaviour {
                 print(path[i].x + " " + path[i].y);
                 Instantiate(visibleNodes, new Vector3(path[i].x, path[i].y, 0), Quaternion.identity);
             }
+        }
+
+        if(Input.GetKeyDown(KeyCode.F))
+        {
+            print(GetClosestNode(f).x + " " + GetClosestNode(f).y);
         }
     }
 

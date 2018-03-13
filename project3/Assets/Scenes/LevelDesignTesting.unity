@@ -1126,6 +1126,22 @@ Prefab:
       propertyPath: m_RootOrder
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 114710613118036450, guid: baa6d5ac6350e7f4a9e24f1cf869b0c6,
+        type: 2}
+      propertyPath: seeNodes
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114710613118036450, guid: baa6d5ac6350e7f4a9e24f1cf869b0c6,
+        type: 2}
+      propertyPath: visibleNodes
+      value: 
+      objectReference: {fileID: 1302271708407238, guid: 758c632a3b0c6a14d858702a07662fcd,
+        type: 2}
+    - target: {fileID: 114710613118036450, guid: baa6d5ac6350e7f4a9e24f1cf869b0c6,
+        type: 2}
+      propertyPath: height
+      value: 56
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: baa6d5ac6350e7f4a9e24f1cf869b0c6, type: 2}
   m_IsPrefabParent: 0
