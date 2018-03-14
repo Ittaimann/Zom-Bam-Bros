@@ -37,6 +37,7 @@ public class MenuManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        UpdateNumbers();
 		if (Input.GetButtonDown("Pause") && !isPaused)
         {
             Pause();
@@ -112,8 +113,8 @@ public class MenuManager : MonoBehaviour {
 
     public void UpdateNumbers()
     {
-        p1HP.text = player1.GetHealth().ToString();
-        p2HP.text = player2.GetHealth().ToString();
+        p1HP.text = Mathf.Round(player1.GetHealth()).ToString();
+        p2HP.text = Mathf.Round(player2.GetHealth()).ToString();
         p1Speed.text = player1.GetSpeed().ToString();
         p2Speed.text = player2.GetSpeed().ToString();
         p1Bullet.text = player1.GetShootSpeed().ToString();
