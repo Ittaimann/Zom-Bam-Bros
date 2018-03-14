@@ -117,7 +117,7 @@ public class GameManager : MonoBehaviour {
         }
         levelMusic.clip = pvpMusic;
         levelMusic.Play();
-        levelMusic.volume = 1;
+        levelMusic.volume = .9f;
     }
 
     private IEnumerator Flash(GameObject g)

@@ -228,9 +228,11 @@ public class Player : MonoBehaviour {
         }
         else if (playerInfo.fighting && other.tag == "PlayerBullet" + otherPlayerIndex)
         {
-            float damage = other.GetComponent<BulletMovement>().damage;
+            BulletMovement bm = other.GetComponent<BulletMovement>();
 
-            Take_Damage(damage);
+            Take_Damage(bm.damage);
+            if (bm.piercing-- == 0)
+                bm.ReturnToPool();
         }
     }
 

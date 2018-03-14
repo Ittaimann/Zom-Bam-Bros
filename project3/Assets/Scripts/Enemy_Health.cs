@@ -12,6 +12,8 @@ public class Enemy_Health : MonoBehaviour {
                             // prefabof pick up objects
     dumbsprites stateSprites;
 
+    private AudioSource hurtSound;
+
     private float health;
     private bool dead = false;
 
@@ -24,7 +26,7 @@ public class Enemy_Health : MonoBehaviour {
         Material pallate = es.palletes[Random.Range(0, 5)];
         GetComponentInChildren<SpriteRenderer>().sprite=stateSprites.T1;
         GetComponentInChildren<SpriteRenderer>().material = pallate;
-
+        hurtSound = transform.GetChild(0).GetComponent<AudioSource>();
 
     }
 	
@@ -51,6 +53,10 @@ public class Enemy_Health : MonoBehaviour {
     public void Take_Damage(float dam)
     {
         health -= dam;
+
+
+        hurtSound.pitch = Random.Range(1f, 1.5f);
+        hurtSound.Play();
 
         //damage sprite change        
         if(health<=2)
