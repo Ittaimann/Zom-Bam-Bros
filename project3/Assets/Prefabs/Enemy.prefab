@@ -290,7 +290,7 @@ MonoBehaviour:
   gc: {fileID: 0}
   target: {fileID: 0}
   speed: 50
-  maxVelocity: 3.5
+  maxVelocity: 4
   cutoffDistance: 2.5
   hitStrength: 50
   damage: 1

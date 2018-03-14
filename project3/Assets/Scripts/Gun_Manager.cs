@@ -42,12 +42,21 @@ public class Gun_Manager : MonoBehaviour {
         Instantiate(Sniper, used_locations[cur_location].position, Quaternion.identity);
         used_locations.RemoveAt(cur_location);
 
+        cur_location = Random.Range(0, used_locations.Count);
+
+        Instantiate(Sniper, used_locations[cur_location].position, Quaternion.identity);
+        used_locations.RemoveAt(cur_location);
+
 
         cur_location = Random.Range(0, used_locations.Count);
 
         Instantiate(Shotgun, used_locations[cur_location].position, Quaternion.identity);
         used_locations.RemoveAt(cur_location);
 
+        cur_location = Random.Range(0, used_locations.Count);
+
+        Instantiate(Shotgun, used_locations[cur_location].position, Quaternion.identity);
+        used_locations.RemoveAt(cur_location);
 
         cur_location = Random.Range(0, used_locations.Count);
 
@@ -66,6 +75,10 @@ public class Gun_Manager : MonoBehaviour {
         Instantiate(Rifle, used_locations[cur_location].position, Quaternion.identity);
         used_locations.RemoveAt(cur_location);
 
+        cur_location = Random.Range(0, used_locations.Count);
+
+        Instantiate(Rifle, used_locations[cur_location].position, Quaternion.identity);
+        used_locations.RemoveAt(cur_location);
 
         cur_location = Random.Range(0, used_locations.Count);
     }

@@ -90,7 +90,7 @@ public class GameManager : MonoBehaviour {
             }
 
             GameObject e = Instantiate(enemy, spawn.position, Quaternion.identity);
-            e.GetComponent<Enemy_Movement>().maxVelocity += Random.Range(-1f, 1f);
+            e.GetComponent<Enemy_Movement>().maxVelocity += Random.Range(-1.5f, 1.5f);
             e.GetComponent<Enemy_Movement>().gc = gc;
             int rand = Random.Range(0, 100);
 
