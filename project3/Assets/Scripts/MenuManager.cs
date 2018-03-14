@@ -127,8 +127,6 @@ public class MenuManager : MonoBehaviour {
     public void GameOver()
     {
         UnloadAll();
-        LoadMenu(gameOverMenu);
-        LoadSystem(gameOverSystem);
         canPause = false;
         StartCoroutine(EndSlowTime());
     }
@@ -138,8 +136,10 @@ public class MenuManager : MonoBehaviour {
         for (int i = 0; i < 100; ++i)
         {
             Time.timeScale -= 0.01f;
-            yield return new WaitForSeconds(0.013f);
+            yield return new WaitForSecondsRealtime(0.013f);
         }
+        LoadMenu(gameOverMenu);
+        LoadSystem(gameOverSystem);
         Time.timeScale = 0;
     }
 }

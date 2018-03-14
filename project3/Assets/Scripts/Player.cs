@@ -141,6 +141,7 @@ public class Player : MonoBehaviour {
 
         if (health <= 0)
         {
+            health = 0;
             playerInfo.isalive = false;
             gameObject.SetActive(false);
             Instantiate(deadBody, transform.position, Quaternion.identity);
@@ -221,7 +222,10 @@ public class Player : MonoBehaviour {
             if (shoot_wait > shoot_speed_max)
             {
                 shoot_wait -= 0.1f;
-                bulletPickups++;
+                if (bulletPickups < 3)
+                {
+                    bulletPickups++;
+                }
             }
         }
         else if(other.tag == "Gun")
