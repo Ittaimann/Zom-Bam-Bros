@@ -253,4 +253,19 @@ public class Player : MonoBehaviour {
             yield return new WaitForSeconds(0.05f);
         }
     }
+
+    public float GetHealth()
+    {
+        return health;
+    }
+
+    public float GetSpeed()
+    {
+        return speed;
+    }
+
+    public float GetShootSpeed()
+    {
+        return shoot_wait;
+    }
 }

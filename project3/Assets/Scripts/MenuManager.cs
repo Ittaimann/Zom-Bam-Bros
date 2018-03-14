@@ -2,8 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour {
+
+    public Player player1;
+    public Player player2;
 
     public GameObject pauseMenu;
     public GameObject controlsMenu;
@@ -15,10 +19,19 @@ public class MenuManager : MonoBehaviour {
     private bool isPaused;
 
 
+    public Text p1HP;
+    public Text p2HP;
+    public Text p1Speed;
+    public Text p2Speed;
+    public Text p1Bullet;
+    public Text p2Bullet;
+
+
 	// Use this for initialization
 	void Start () {
         isPaused = false;
         UnloadAll();
+        UpdateNumbers();
 
 	}
 	
@@ -95,5 +108,15 @@ public class MenuManager : MonoBehaviour {
     public void UnloadSystem(UnityEngine.EventSystems.EventSystem system)
     {
         system.gameObject.SetActive(false);
+    }
+
+    public void UpdateNumbers()
+    {
+        p1HP.text = player1.GetHealth().ToString();
+        p2HP.text = player2.GetHealth().ToString();
+        p1Speed.text = player1.GetSpeed().ToString();
+        p2Speed.text = player2.GetSpeed().ToString();
+        p1Bullet.text = player1.GetShootSpeed().ToString();
+        p2Bullet.text = player2.GetShootSpeed().ToString();
     }
 }
