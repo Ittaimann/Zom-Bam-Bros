@@ -12,6 +12,7 @@ TagManager:
   - ShootSpeedUp
   - Gun
   - Walls
+  - Spawn
   layers:
   - Default
   - TransparentFX

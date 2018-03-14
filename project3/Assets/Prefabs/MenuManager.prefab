@@ -51,6 +51,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04855afa45b105c4791cfc542036ac6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player1: {fileID: 0}
+  player2: {fileID: 0}
   pauseMenu: {fileID: 0}
   controlsMenu: {fileID: 0}
-  optionsMenu: {fileID: 0}
+  pauseSystem: {fileID: 0}
+  controlSystem: {fileID: 0}
+  p1HP: {fileID: 0}
+  p2HP: {fileID: 0}
+  p1Speed: {fileID: 0}
+  p2Speed: {fileID: 0}
+  p1Bullet: {fileID: 0}
+  p2Bullet: {fileID: 0}

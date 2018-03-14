@@ -13,6 +13,7 @@ public class Player : MonoBehaviour {
     private ParticleSystem shoot_ps;
     private AudioSource powerupAudio;
     public AudioSource shootAudio;
+    private int bulletPickups;
 
 
     public int otherPlayerIndex;
@@ -49,6 +50,8 @@ public class Player : MonoBehaviour {
         powerupAudio = GetComponent<AudioSource>();
 
         rb2d = GetComponent<Rigidbody2D>();
+
+        bulletPickups = 1;
 
     }
 	
@@ -175,6 +178,7 @@ public class Player : MonoBehaviour {
                 powerupAudio.clip = playerInfo.equipSound;
                 powerupAudio.Play();
                 Destroy(other.gameObject);
+                bulletPickups = 1;
             }
         }
     }
@@ -213,7 +217,10 @@ public class Player : MonoBehaviour {
             powerupAudio.Play();
             Destroy(other.gameObject);
             if (shoot_wait > shoot_speed_max)
+            {
                 shoot_wait -= 0.1f;
+                bulletPickups++;
+            }
         }
         else if(other.tag == "Gun")
         {
@@ -221,9 +228,11 @@ public class Player : MonoBehaviour {
         }
         else if (playerInfo.fighting && other.tag == "PlayerBullet" + otherPlayerIndex)
         {
-            float damage = other.GetComponent<BulletMovement>().damage;
+            BulletMovement bm = other.GetComponent<BulletMovement>();
 
-            Take_Damage(damage);
+            Take_Damage(bm.damage);
+            if (bm.piercing-- == 0)
+                bm.ReturnToPool();
         }
     }
 
@@ -252,5 +261,20 @@ public class Player : MonoBehaviour {
             following_camera.transform.position += new Vector3(Random.Range(-.1f * mult, 0.1f * mult), Random.Range(-.1f * mult, .1f * mult));
             yield return new WaitForSeconds(0.05f);
         }
+    }
+
+    public float GetHealth()
+    {
+        return health;
+    }
+
+    public float GetSpeed()
+    {
+        return (speed-5)/5;
+    }
+
+    public float GetShootSpeed()
+    {
+        return bulletPickups;
     }
 }

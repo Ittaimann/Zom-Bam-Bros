@@ -60,8 +60,8 @@ public class Enemy_Movement : MonoBehaviour {
         {
             if (rh.collider.tag == "Player" || ((Vector2)to_target.position - lastKnown).magnitude < 5)
             {
-                print("saw player " + transform.position.x + " " + transform.position.y);
-                lastKnown = rh.collider.gameObject.transform.position;
+                if(((Vector2)to_target.position - lastKnown).magnitude > 5)
+                    lastKnown = rh.collider.gameObject.transform.position;
                 resetPath = true;
                 settingPath = false;
                 //If can see player walk right towards them
@@ -80,20 +80,18 @@ public class Enemy_Movement : MonoBehaviour {
                 //This is to make it reset the path if it started following the player but may be too many calls
                 if ((path_to_player.Count == 0 || resetPath) && !settingPath)
                 {
+                    //If it doesn't have a path then get one
+
                     resetPath = false;
                     path_to_player.Clear();
                     path_to_player = gc.Get_Path(transform, to_target);
-                    print("getting path");
                     settingPath = true;
                 }
                 else if (path_to_player.Count > 0)
                 {
+                    //If it has a path then follow it
+
                     settingPath = false;
-                    if (((Vector2)transform.position - path_to_player[path_to_player.Count - 1].position()).magnitude <= 0.25f)
-                    {
-                        //If he got to the Node then go to next one
-                        path_to_player.RemoveAt(path_to_player.Count - 1);
-                    }
 
                     Vector2 nodePos = path_to_player[path_to_player.Count - 1].position();
 
@@ -103,7 +101,14 @@ public class Enemy_Movement : MonoBehaviour {
 
                     if (rb.velocity.magnitude < maxVelocity)
                         rb.velocity += speed * Time.deltaTime * (nodePos - (Vector2)transform.position).normalized;
+
+                    if (((Vector2)transform.position - path_to_player[path_to_player.Count - 1].position()).magnitude <= 0.5f || rb.velocity.magnitude < .5f)
+                    {
+                        //If he got to the Node then go to next one
+                        path_to_player.RemoveAt(path_to_player.Count - 1);
+                    }
                 }
+               // print(path_to_player.Count);
             }
 
         }

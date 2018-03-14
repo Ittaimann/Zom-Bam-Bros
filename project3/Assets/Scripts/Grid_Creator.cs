@@ -25,8 +25,8 @@ public class Node
 
     public float x;
     public float y;
-    public int g;
-    public int f;
+    public float g;
+    public float f;
     public Node parent;
 }
 
@@ -70,7 +70,7 @@ public class Grid_Creator : MonoBehaviour {
 
 
 
-    SortedList<int, Node> open = new SortedList<int, Node>(new DuplicateKeyComparer<int>());
+    SortedList<float, Node> open = new SortedList<float, Node>(new DuplicateKeyComparer<float>());
     List<Node> closed = new List<Node>();
 
     //***************************************************************Setting up the Grid*************************************************************
@@ -89,8 +89,10 @@ public class Grid_Creator : MonoBehaviour {
                 rh = Physics2D.Raycast(new Vector2(top_left.x + (x * 5), top_left.y - (y * 5)), Vector2.zero);
                 if(rh.collider)
                 {
-                    //print("hit at " + x + " " + y);
-                    grid[x, y].f = -1;
+                    if(rh.collider.tag == "Walls")
+                        grid[x, y].f = -1;
+                    else if(seeNodes)
+                        Instantiate(visibleNodes, new Vector2(top_left.x + (x * 5), top_left.y - (y * 5)), Quaternion.identity);
                 }
                 else if(seeNodes)
                     Instantiate(visibleNodes, new Vector2(top_left.x + (x * 5), top_left.y - (y * 5)), Quaternion.identity);
@@ -128,6 +130,15 @@ public class Grid_Creator : MonoBehaviour {
         {
             print(GetClosestNode(f).x + " " + GetClosestNode(f).y);
         }
+        
+        if(Input.GetKeyDown(KeyCode.I))
+        {
+            Node n = new Node(1, 1);
+            closed.Add(n);
+            print(closed.Contains(new Node(1, 1, 1)));
+            n.f = 5;
+            print(closed[0].f);
+        }
     }
 
     //********************************************************Creating the Paths*****************************************************************
@@ -138,9 +149,12 @@ public class Grid_Creator : MonoBehaviour {
         List<Node> path = new List<Node>();
 
         Node curNode = Create_Path(from, to);
-
-        while(curNode.parent != null)
+        int max_count = 0;
+        while(curNode.parent != null && max_count < 100)
         {
+            max_count++;
+            if (max_count == 100)
+                print("maxed out");
             path.Add(curNode);
             curNode = curNode.parent;
         }
@@ -164,6 +178,12 @@ public class Grid_Creator : MonoBehaviour {
         open.Clear();
         closed.Clear();
 
+        //Resetting any values that may have been left over from previous runs
+        fromNode.f = 0;
+        fromNode.g = 0;
+        fromNode.parent = null;
+        toNode.parent = null;
+
         //Get the first Node (the start node)
         open.Add(fromNode.f, fromNode);
 
@@ -174,6 +194,7 @@ public class Grid_Creator : MonoBehaviour {
             Node testing = open.Values[0];
             open.RemoveAt(0);
 
+            //Instantiate(visibleNodes, testing.position(), Quaternion.identity);
             //Add this node to the closed list since we visited it
             closed.Add(testing);
 
@@ -189,7 +210,7 @@ public class Grid_Creator : MonoBehaviour {
                 {
 
                     //Checks if index is in bounds of the map and its not on the testing Node (if so then ignore)
-                    if (x < 0 || x >= width || y < 0 || y >= height || (x == x_index && y == y_index) || (x != x_index && y != y_index))
+                    if (x < 0 || x >= width || y < 0 || y >= height || (x == x_index && y == y_index))
                         continue;
 
                     //Checks to see if node being checked is a wall (if so then ignore)
@@ -205,14 +226,21 @@ public class Grid_Creator : MonoBehaviour {
 
 
                     //Check to see if the Node is already on the closed list (meanings its already been explored)
-                    if (closed.Contains(grid[x, y]))
+                    bool skip = false;
+                    foreach(Node n in closed)
+                    {
+                        if (Node.samePosition(n, grid[x, y]))
+                            skip = true;
+                    }
+                    if (skip)
                         continue;
 
-                    //Set the Path cost to 1 plus the path cost of the current Node
-                    grid[x, y].g = testing.g + 1;
+                    //Set the Path cost to 1 plus the path cost of the current Node                        
+                    grid[x, y].g = x != x_index && y != y_index ? testing.g + 1.4f : testing.g + 1;
 
                     //Calculate the new F value of the Node as the G + H values (the h is the heaurstic of this node's distance to the goal)
                     grid[x, y].f = Calculate_Manhattan(x, y, toNode_x, toNode_y) + grid[x, y].g;
+                    //print(x + " " + y + " " + grid[x, y].f);
 
                     //Check to see if the Node is already on the open list and if it is to see if the one on the open list is cheaper to get to (if so then ignore this one)
                     if (open.ContainsValue(grid[x, y]))
@@ -224,6 +252,7 @@ public class Grid_Creator : MonoBehaviour {
                         {
                             open.Values[index].f = grid[x, y].f;
                             open.Values[index].g = grid[x, y].g;
+                            open.Values[index].parent = testing;
                             continue;
                         }
                     }
@@ -244,7 +273,7 @@ public class Grid_Creator : MonoBehaviour {
     private int Calculate_Manhattan(int x_pos, int y_pos, int target_x, int target_y)
     {
         //Calculates the Manhattan distance (difference in x plus the difference in y)
-        return Mathf.Abs(x_pos + target_x) + Mathf.Abs(y_pos + target_y);
+        return Mathf.Abs(x_pos - target_x) + Mathf.Abs(y_pos - target_y);
     }
 
     private Node GetClosestNode(Transform pos)
