@@ -13,6 +13,7 @@ public class Enemy_Health : MonoBehaviour {
     dumbsprites stateSprites;
 
     private float health;
+    private bool dead = false;
 
 	// Use this for initialization
 	void Start () {
@@ -36,6 +37,10 @@ public class Enemy_Health : MonoBehaviour {
 
 
             float angle = Vector2.Angle(Vector2.right, transform.position - c.transform.position);
+            if (c.transform.position.y > transform.position.y)
+            {
+                angle = -angle;
+            }
             rb.AddForce(new Vector2(Mathf.Cos(Mathf.Deg2Rad * angle) * bm.GetDamage(), Mathf.Sin(Mathf.Deg2Rad * angle) * bm.GetDamage()) * knockback);
 
             if (bm.piercing-- == 0)
@@ -52,12 +57,12 @@ public class Enemy_Health : MonoBehaviour {
         {
             GetComponentInChildren<SpriteRenderer>().sprite = stateSprites.T2;
         }
-        if (health <= 0)
+        if (health <= 0 && !dead)
         {
             es.DecEnemyNumber();
             if(drop!= null)
                 Instantiate( drop, transform.position, transform.rotation );
-           
+            dead = true;
             Destroy(gameObject);
         }
     }
