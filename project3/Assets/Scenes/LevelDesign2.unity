@@ -602,6 +602,12 @@ Prefab:
       propertyPath: m_Name
       value: player2
       objectReference: {fileID: 0}
+    - target: {fileID: 114033548840427744, guid: 27fbe963642ea5e4298808c4d38193b2,
+        type: 2}
+      propertyPath: deadBody
+      value: 
+      objectReference: {fileID: 1623629923646902, guid: 52f7f3d1cb7120e488d75d66e9ce06d9,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 27fbe963642ea5e4298808c4d38193b2, type: 2}
   m_IsPrefabParent: 0
@@ -4985,6 +4991,12 @@ Prefab:
       propertyPath: m_Name
       value: player1
       objectReference: {fileID: 0}
+    - target: {fileID: 114952516061307440, guid: d0672d96630af3944bbd4977094ece7c,
+        type: 2}
+      propertyPath: deadBody
+      value: 
+      objectReference: {fileID: 1273849907978774, guid: 7ac4cb4a593b4554da1aff51be6e559d,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d0672d96630af3944bbd4977094ece7c, type: 2}
   m_IsPrefabParent: 0

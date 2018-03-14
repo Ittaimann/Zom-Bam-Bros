@@ -34,6 +34,7 @@ public class Player : MonoBehaviour {
     private float speed_max, health_max, shoot_speed_max;
 
     public Sprite rifle, sniper, shotgun;
+    public GameObject deadBody;
 
 
     //follow cam
@@ -142,6 +143,7 @@ public class Player : MonoBehaviour {
         {
             playerInfo.isalive = false;
             gameObject.SetActive(false);
+            Instantiate(deadBody, transform.position, Quaternion.identity);
         }
 
         //Play sounds for damage
