@@ -92,23 +92,25 @@ public class Enemy_Movement : MonoBehaviour {
                     //If it has a path then follow it
 
                     settingPath = false;
-
-                    Vector2 nodePos = path_to_player[path_to_player.Count - 1].position();
-
-                    //Travel to the first Node on the list
-                    rb.velocity /= 1.05f;
-                    transform.GetChild(0).rotation = Quaternion.LookRotation(Vector3.forward, (Vector3)nodePos - transform.position);
-
-                    if (rb.velocity.magnitude < maxVelocity)
-                        rb.velocity += speed * Time.deltaTime * (nodePos - (Vector2)transform.position).normalized;
-
                     if (((Vector2)transform.position - path_to_player[path_to_player.Count - 1].position()).magnitude <= 0.5f || rb.velocity.magnitude < .5f)
                     {
                         //If he got to the Node then go to next one
+
                         path_to_player.RemoveAt(path_to_player.Count - 1);
                     }
+
+                    if(path_to_player.Count > 0)
+                    {
+                        Vector2 nodePos = path_to_player[path_to_player.Count - 1].position();
+
+                        //Travel to the first Node on the list
+                        rb.velocity /= 1.05f;
+                        transform.GetChild(0).rotation = Quaternion.LookRotation(Vector3.forward, (Vector3)nodePos - transform.position);
+
+                        if (rb.velocity.magnitude < maxVelocity)
+                            rb.velocity += speed * Time.deltaTime * (nodePos - (Vector2)transform.position).normalized;
+                    }
                 }
-               // print(path_to_player.Count);
             }
 
         }
