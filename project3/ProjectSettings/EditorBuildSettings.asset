@@ -5,14 +5,14 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/00Start.unity
     guid: a359eb5a07c9dfe4b8839388591d30b7
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/01Controls.unity
     guid: 72d1716fac77f0945a558522ded86fad
   - enabled: 0
-    path: Assets/Scenes/02Options.unity
+    path: Assets/Scenes/02Story.unity
     guid: c89d98c356217bc408090b0cad583098
   - enabled: 0
     path: Assets/Scenes/AndrewTest.unity
@@ -29,6 +29,9 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/03Integrate.unity
     guid: 9419ac1fecc638547a5969d153c623df
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/LevelDesignTesting.unity
     guid: 45dbf68a26518104b8aae4755c0fb800
+  - enabled: 1
+    path: Assets/Scenes/LevelDesign2.unity
+    guid: 29f9560ab5305da41a1b5b50d50ab2f7
