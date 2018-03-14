@@ -48,7 +48,7 @@ public class Enemy_Health : MonoBehaviour {
         health -= dam;
 
         //damage sprite change        
-        if(health==1)
+        if(health<=2)
         {
             GetComponentInChildren<SpriteRenderer>().sprite = stateSprites.T2;
         }

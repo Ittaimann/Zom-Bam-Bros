@@ -143,7 +143,7 @@ MonoBehaviour:
   spreadDegrees: 0
   bulletSpeed: 100
   reload: 1.5
-  damage: 5
+  damage: 3.5
   shootSound: {fileID: 8300000, guid: 343b4aa34b768184fb52cce951ced8ed, type: 3}
   piercing: 2
   laserLocation: {x: 4.18, y: -1.04}

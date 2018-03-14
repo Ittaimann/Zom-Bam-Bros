@@ -98,7 +98,7 @@ public class Enemy_Movement : MonoBehaviour {
                     if (rb.velocity.magnitude < maxVelocity)
                         rb.velocity += speed * Time.deltaTime * (nodePos - (Vector2)transform.position).normalized;
 
-                    if (((Vector2)transform.position - path_to_player[path_to_player.Count - 1].position()).magnitude <= 0.25f)
+                    if (((Vector2)transform.position - path_to_player[path_to_player.Count - 1].position()).magnitude <= 0.5f)
                     {
                         //If he got to the Node then go to next one
                         path_to_player.RemoveAt(path_to_player.Count - 1);

@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour {
     public Grid_Creator gc;
 
 	public EnemyScriptable enemies;
+    public float spawnDisableDist;
 
     [Header("Player")]
 	public PlayerScriptable player1;
@@ -59,13 +60,18 @@ public class GameManager : MonoBehaviour {
 
 	IEnumerator enemySpawn()
 	{
-        float offset = 0.5f;
 		while(true)
 		{
-            yield return new WaitForSeconds(Random.Range(SpawnTime + offset, SpawnTime + offset));
-            Transform spawn=(transform.GetChild(Random.Range(0,6)));
+            yield return new WaitForSeconds(Random.Range(SpawnTime - SpawnTime/4, SpawnTime + SpawnTime/4));
+            Transform spawn=(transform.GetChild(Random.Range(0,transform.childCount)));
 
-            GameObject e = Instantiate(enemy, spawn);
+            while((player1.loc.position - spawn.position).magnitude < spawnDisableDist || (player2.loc.position - spawn.position).magnitude < spawnDisableDist)
+            { 
+                print("getting new spawn");
+                spawn = (transform.GetChild(Random.Range(0, transform.childCount)));
+            }
+
+            GameObject e = Instantiate(enemy, spawn.position, Quaternion.identity);
             e.GetComponent<Enemy_Movement>().maxVelocity += Random.Range(-1f, 1f);
             e.GetComponent<Enemy_Movement>().gc = gc;
             int rand = Random.Range(0, 100);
@@ -81,7 +87,6 @@ public class GameManager : MonoBehaviour {
             {
                 player1.fighting = true;
                 player2.fighting = true;
-                offset = 0.2f;
             }
         }
     }
