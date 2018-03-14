@@ -33,10 +33,16 @@ public class GameManager : MonoBehaviour {
     private AudioSource levelMusic;
     public AudioClip pvpMusic;
 
+    //Menu Manager for game over menu
+    private MenuManager menus;
+
 
 
 	// Use this for initialization
 	void Start () {
+        menus = FindObjectOfType<MenuManager>();
+        player1_death_panel.SetActive(false);
+        player2_death_panel.SetActive(false);
         enemies.player1 = player1.loc;
         enemies.player2 = player2.loc;
         player1.isalive = true;
@@ -56,10 +62,16 @@ public class GameManager : MonoBehaviour {
             zombieCount.text = "Zombies Left: " + enemies.enemyNumber;
 
 
-        if (!player1.isalive && !player1_death_panel.activeSelf)
+        if (!player1.isalive && !player1_death_panel.activeSelf && !player2_death_panel.activeSelf)
+        {
             player1_death_panel.SetActive(true);
-        if (!player2.isalive && !player2_death_panel.activeSelf)
+            menus.GameOver();
+        }
+        if (!player2.isalive && !player2_death_panel.activeSelf && !player1_death_panel.activeSelf)
+        {
             player2_death_panel.SetActive(true);
+            menus.GameOver();
+        }
 		
 		// Might want to break this into a seperate function
 	

@@ -11,11 +11,12 @@ public class MenuManager : MonoBehaviour {
 
     public GameObject pauseMenu;
     public GameObject controlsMenu;
-    //public GameObject optionsMenu;
+    public GameObject gameOverMenu;
     public UnityEngine.EventSystems.EventSystem pauseSystem;
     public UnityEngine.EventSystems.EventSystem controlSystem;
-    //public UnityEngine.EventSystems.EventSystem optionSystem;
+    public UnityEngine.EventSystems.EventSystem gameOverSystem;
 
+    private bool canPause;
     private bool isPaused;
 
 
@@ -29,6 +30,8 @@ public class MenuManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        Time.timeScale = 1;
+        canPause = true;
         isPaused = false;
         UnloadAll();
         UpdateNumbers();
@@ -38,7 +41,7 @@ public class MenuManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         UpdateNumbers();
-		if (Input.GetButtonDown("Pause") && !isPaused)
+		if (Input.GetButtonDown("Pause") && !isPaused && canPause)
         {
             Pause();
         } else
@@ -95,10 +98,10 @@ public class MenuManager : MonoBehaviour {
     {
         UnloadMenu(pauseMenu);
         UnloadMenu(controlsMenu);
-        //UnloadMenu(optionsMenu);
+        UnloadMenu(gameOverMenu);
         UnloadSystem(pauseSystem);
         UnloadSystem(controlSystem);
-        //UnloadSystem(optionSystem);
+        UnloadSystem(gameOverSystem);
     }
 
     public void LoadSystem(UnityEngine.EventSystems.EventSystem system)
@@ -119,5 +122,14 @@ public class MenuManager : MonoBehaviour {
         p2Speed.text = player2.GetSpeed().ToString();
         p1Bullet.text = player1.GetShootSpeed().ToString();
         p2Bullet.text = player2.GetShootSpeed().ToString();
+    }
+
+    public void GameOver()
+    {
+        UnloadAll();
+        LoadMenu(gameOverMenu);
+        LoadSystem(gameOverSystem);
+        canPause = false;
+        Time.timeScale = 0.5f;
     }
 }
