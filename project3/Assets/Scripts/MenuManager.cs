@@ -130,6 +130,16 @@ public class MenuManager : MonoBehaviour {
         LoadMenu(gameOverMenu);
         LoadSystem(gameOverSystem);
         canPause = false;
-        Time.timeScale = 0.5f;
+        StartCoroutine(EndSlowTime());
+    }
+
+    private IEnumerator EndSlowTime()
+    {
+        for (int i = 0; i < 100; ++i)
+        {
+            Time.timeScale -= 0.01f;
+            yield return new WaitForSeconds(0.013f);
+        }
+        Time.timeScale = 0;
     }
 }
