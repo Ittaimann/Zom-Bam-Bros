@@ -29,6 +29,10 @@ public class GameManager : MonoBehaviour {
     public GameObject speedDrop;
     public GameObject shootspeedDrop;
 
+    [Header("Music")]
+    private AudioSource levelMusic;
+    public AudioClip pvpMusic;
+
 
 
 	// Use this for initialization
@@ -40,6 +44,7 @@ public class GameManager : MonoBehaviour {
         player1.fighting = false;
         player2.fighting = false;
         enemies.enemyNumber = num_enemies;
+        levelMusic = GetComponent<AudioSource>();
 		StartCoroutine("enemySpawn");
 
 	}
@@ -47,7 +52,9 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        zombieCount.text = "Zombies Left: " + enemies.enemyNumber;
+        if (!player1.fighting)
+            zombieCount.text = "Zombies Left: " + enemies.enemyNumber;
+
 
         if (!player1.isalive && !player1_death_panel.activeSelf)
             player1_death_panel.SetActive(true);
@@ -67,7 +74,6 @@ public class GameManager : MonoBehaviour {
 
             while((player1.loc.position - spawn.position).magnitude < spawnDisableDist || (player2.loc.position - spawn.position).magnitude < spawnDisableDist)
             { 
-                print("getting new spawn");
                 spawn = (transform.GetChild(Random.Range(0, transform.childCount)));
             }
 
@@ -83,10 +89,16 @@ public class GameManager : MonoBehaviour {
             else if(rand >= 50 && rand < 55)
                 e.GetComponent<Enemy_Health>().drop = shootspeedDrop;
 
-            if(canFight())
+            if(canFight() && !player1.fighting)
             {
                 player1.fighting = true;
                 player2.fighting = true;
+                zombieCount.text = "FIGHT";
+                zombieCount.color = Color.red;
+                zombieCount.gameObject.transform.localScale = new Vector3(2, 2, 2);
+                StartCoroutine(Music_Fade());
+
+                StartCoroutine(Flash(zombieCount.gameObject));
             }
         }
     }
@@ -94,5 +106,30 @@ public class GameManager : MonoBehaviour {
     private bool canFight()
     {
         return enemies.enemyNumber == 0;
+    }
+
+    private IEnumerator Music_Fade()
+    {
+        for(int i = 0; i < 10; ++i)
+        {
+            levelMusic.volume -= i / 10f;
+            yield return new WaitForSeconds(0.05f);
+        }
+        levelMusic.clip = pvpMusic;
+        levelMusic.Play();
+        levelMusic.volume = 1;
+    }
+
+    private IEnumerator Flash(GameObject g)
+    {
+        int count = 0;
+        while(count < 5)
+        {
+            g.SetActive(false);
+            yield return new WaitForSeconds(0.3f);
+            g.SetActive(true);
+            yield return new WaitForSeconds(0.3f);
+            count++;
+        }
     }
 }

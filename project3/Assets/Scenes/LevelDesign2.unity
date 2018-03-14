@@ -1717,7 +1717,7 @@ Prefab:
     - target: {fileID: 114768142298072352, guid: 5656e113999538743b35fb460bea7b86,
         type: 2}
       propertyPath: SpawnTime
-      value: 0.5
+      value: 0.55
       objectReference: {fileID: 0}
     - target: {fileID: 1092434883881612, guid: 5656e113999538743b35fb460bea7b86, type: 2}
       propertyPath: m_TagString
@@ -1776,8 +1776,13 @@ Prefab:
     - target: {fileID: 114768142298072352, guid: 5656e113999538743b35fb460bea7b86,
         type: 2}
       propertyPath: spawnDisableDist
-      value: 20
+      value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: 114768142298072352, guid: 5656e113999538743b35fb460bea7b86,
+        type: 2}
+      propertyPath: pvpMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: 729f5486d99866047847c106d6354228, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5656e113999538743b35fb460bea7b86, type: 2}
   m_IsPrefabParent: 0

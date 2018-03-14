@@ -80,6 +80,8 @@ public class Enemy_Movement : MonoBehaviour {
                 //This is to make it reset the path if it started following the player but may be too many calls
                 if ((path_to_player.Count == 0 || resetPath) && !settingPath)
                 {
+                    //If it doesn't have a path then get one
+
                     resetPath = false;
                     path_to_player.Clear();
                     path_to_player = gc.Get_Path(transform, to_target);
@@ -87,6 +89,8 @@ public class Enemy_Movement : MonoBehaviour {
                 }
                 else if (path_to_player.Count > 0)
                 {
+                    //If it has a path then follow it
+
                     settingPath = false;
 
                     Vector2 nodePos = path_to_player[path_to_player.Count - 1].position();
@@ -98,7 +102,7 @@ public class Enemy_Movement : MonoBehaviour {
                     if (rb.velocity.magnitude < maxVelocity)
                         rb.velocity += speed * Time.deltaTime * (nodePos - (Vector2)transform.position).normalized;
 
-                    if (((Vector2)transform.position - path_to_player[path_to_player.Count - 1].position()).magnitude <= 0.5f || rb.velocity.magnitude < 0.1f)
+                    if (((Vector2)transform.position - path_to_player[path_to_player.Count - 1].position()).magnitude <= 0.5f || rb.velocity.magnitude < .5f)
                     {
                         //If he got to the Node then go to next one
                         path_to_player.RemoveAt(path_to_player.Count - 1);
