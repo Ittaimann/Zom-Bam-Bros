@@ -15,6 +15,14 @@ survive the invasion.
 Use weapons and powerups to your advantage as
 you navigate the streets and corridors to survive.
 
+--------------------------------------------------
+Intended Feeling:
+The game is intended to have a fairly quick play 
+cycle (around 3-5 minutes per round). Thus,
+there should be a sense of tension during gameplay
+with an overall jovial competitiveness that comes
+from player-vs-player games.
+
 ---------------------------------------------------
 Controls:
 ***GAME IS CATERED TOWARDS PLAYSTATION 4 CONTROLLER***
