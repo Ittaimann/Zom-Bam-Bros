@@ -13,6 +13,7 @@ public class Enemy_Health : MonoBehaviour {
     dumbsprites stateSprites;
 
     private AudioSource hurtSound;
+    public ParticleSystem hurtParticles;
 
     private float health;
     private bool dead = false;
@@ -36,7 +37,7 @@ public class Enemy_Health : MonoBehaviour {
         {
             BulletMovement bm = c.GetComponent<BulletMovement>();
             Take_Damage(bm.GetDamage());
-
+            hurtParticles.gameObject.transform.position = c.gameObject.transform.position;
 
             float angle = Vector2.Angle(Vector2.right, transform.position - c.transform.position);
             if (c.transform.position.y > transform.position.y)
@@ -57,9 +58,11 @@ public class Enemy_Health : MonoBehaviour {
 
         hurtSound.pitch = Random.Range(1f, 1.5f);
         hurtSound.Play();
+        hurtParticles.Emit(30);
+ 
 
         //damage sprite change        
-        if(health<=2)
+        if (health<=2)
         {
             GetComponentInChildren<SpriteRenderer>().sprite = stateSprites.T2;
         }
