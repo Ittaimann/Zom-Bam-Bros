@@ -12,6 +12,6 @@ public class MainMenu_Cam : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        transform.position = new Vector3(25 + (45 * Mathf.Cos(Time.time/3)), 0, -10);
+        transform.position = new Vector3(25 + (45 * Mathf.Sin(Time.time/4)), 0, -10);
 	}
 }
