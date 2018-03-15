@@ -6,6 +6,7 @@ public class MainMenu_Cam : MonoBehaviour {
 
     void Start()
     {
+        Time.timeScale = 1;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Confined;
     }
