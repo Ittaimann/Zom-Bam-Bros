@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour {
     [Header("Music")]
     private AudioSource levelMusic;
     public AudioClip pvpMusic;
+    public AudioSource alarm;
 
     //Menu Manager for game over menu
     private MenuManager menus;
@@ -109,7 +110,6 @@ public class GameManager : MonoBehaviour {
                 zombieCount.color = Color.red;
                 zombieCount.gameObject.transform.localScale = new Vector3(2, 2, 2);
                 StartCoroutine(Music_Fade());
-
                 StartCoroutine(Flash(zombieCount.gameObject));
             }
         }
@@ -124,9 +124,11 @@ public class GameManager : MonoBehaviour {
     {
         for(int i = 0; i < 10; ++i)
         {
-            levelMusic.volume -= i / 10f;
+            levelMusic.volume -= 0.1f;
             yield return new WaitForSeconds(0.05f);
         }
+        alarm.Play();
+        yield return new WaitForSeconds(0.8f);
         levelMusic.clip = pvpMusic;
         levelMusic.Play();
         levelMusic.volume = .9f;
